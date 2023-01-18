@@ -1,0 +1,20 @@
+% cover
+{
+\sffamily
+\pagecolor{mygreen}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay, shift=(current page.south west)]
+\begin{scope}[x={(current page.south east)},y={(current page.north west)}]
+\filldraw [fill=black, draw=none, opacity=0.6] (0.2,0.7) rectangle (1,1);
+\filldraw [fill=darkgray, draw=none, opacity=0.6] (0,0.0) rectangle (0.2,1);
+\node at (0.28,0.9) [anchor=west] {\fontsize{20}{20}\selectfont\textcolor{mybeige}{Curso de Extensão}};
+\node at (0.28,0.8) [anchor=west] {\fontsize{40}{45}\selectfont\textcolor{white}{Astronomia de Posição}};
+\node at (0.92,0.60) [anchor=east] {\fontsize{20}{20}\selectfont\textcolor{mybeige}{Rubens E.~G.~Machado}};
+\node at (0.92,0.57) [anchor=east] {\fontsize{20}{20}\selectfont\textcolor{mybeige}{UTFPR}};
+\node at (0.92,0.54) [anchor=east] {\fontsize{20}{20}\selectfont\textcolor{mybeige}{2023}};
+\node at (1.01,-0.01) [anchor=south east, xshift=3cm, yshift=-3cm] {\includestandalone[scale=1.6]{figs/fig00}};
+\end{scope}
+\end{tikzpicture}
+\clearpage
+\pagecolor{white}
+}

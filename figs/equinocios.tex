@@ -1,0 +1,56 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\begin{tikzpicture}
+ 
+\def\R{3}
+\def\eps{23}
+\tikzmath{
+\xp = \R * cos(\eps);
+\yp = \R * sin(\eps); 
+}
+
+\coordinate (O) at (0,0) {}; %center of the Earth
+\coordinate (E) at (\R,0) {}; %Equator (day side)
+\coordinate (S1) at (3.5*\xp,0) {}; %Sun1
+\coordinate (S2) at (3.5*\xp,-\yp) {}; %Sun2
+\coordinate (P) at (\xp,-\yp) {}; %person
+\coordinate (Z) at (2*\xp,-2*\yp) {}; %Zenith
+
+% Sun rays
+\draw[very thick, orange] (S1)--(E);
+\draw[very thick, orange] (S2)--(P);
+\draw[very thick, orange, dashed] (P)--(0.02,-\yp);
+
+% Earth
+\draw[very thick, black] (O) circle (\R);
+
+% Poles
+\draw[very thick, black] (0,\R)--++(0,0.2);
+\draw[very thick, black] (0,-\R)--++(0,-0.2);
+
+% Equator
+\draw[very thick, black] (-\R,0)--(\R,0);
+\draw[draw=none] (-\R,0)--(O) node[midway, above] {Equador da Terra};
+
+% Zenith
+\draw[very thick, black] (O)--(Z) node[right] {$Z$};
+
+% person
+\draw[very thick, black] (O)--(P);
+\draw[mygrass, fill=mygrass] (P) circle (0.08) node[below, yshift=-2mm, xshift=1mm] {$P$};
+
+% Angle: latitude
+\tkzMarkAngle[mark=none, draw=black, size=0.8](P,O,S1);
+\tkzLabelAngle[dist=1](P,O,S1){$\varphi$};
+
+% Angle: zenith distance
+\tkzMarkAngle[mark=none, draw=black, size=0.8](Z,P,S2);
+\tkzLabelAngle[dist=1](Z,P,S2){$z$};
+
+\end{tikzpicture}
+ 
+\end{document}

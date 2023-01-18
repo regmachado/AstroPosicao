@@ -1,0 +1,133 @@
+% language
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% fonts
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[scale=1]{inconsolata}
+
+% bibliography
+\usepackage[authoryear]{natbib}
+
+% page margins
+\usepackage{geometry}
+
+% graphics
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\setlength{\columnsep}{6mm}
+
+% tables
+\usepackage[table]{xcolor}
+
+% tikz and math
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\usepackage{tkz-euclide}
+\usepackage{marvosym}
+\usepackage{tikzsymbols}
+\usepackage{wasysym}
+\usetikzlibrary{math}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{arrows.meta}
+\tikzset{>={Latex[scale=0.7]}}
+\pgfplotsset{compat=newest}
+
+% color definitions
+\usepackage{xcolor}
+\definecolor{mygreen}{HTML}{006c7f}
+\definecolor{mybeige}{HTML}{eeecdf}
+\definecolor{mybrown}{HTML}{783f04}
+\definecolor{greenhorizon}{HTML}{808000}
+\definecolor{bluesky}{HTML}{0096FF}
+\definecolor{purpleequator}{HTML}{8E4585}
+\definecolor{myred}{HTML}{840B1D}
+\definecolor{myyellow}{HTML}{FFEE58}
+\definecolor{mybrown}{HTML}{592720}
+\definecolor{mybrown}{HTML}{7f372d}
+\definecolor{mygrass}{HTML}{3f613a}
+\definecolor{mydarkgreen}{HTML}{343400}
+\definecolor{mydarkpurple}{HTML}{5b2c55}
+\colorlet{mydarkorange}{orange!80!black}
+
+% text color of Part, Chapter, Section
+\usepackage{sectsty}
+\partfont{\color{mygreen}\itshape}
+\chapterfont{\color{mygreen}}
+\sectionfont{\color{mygreen}}
+
+% format chapter titles
+\usepackage{titlesec}
+
+% colored Part pages
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\part}{\thispagestyle{plain}}
+{\pagecolor{mybeige}\thispagestyle{plain}}{}{}
+\xpatchcmd{\@endpart}{\vfil\newpage}{\vfil\newpage
+\pagecolor{white}}{}{}
+\makeatother
+
+% remove page numbering from Part pages
+\usepackage{etoolbox}
+\patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
+
+% toc text colors
+\makeatletter
+\xpatchcmd\l@part{#1}{\itshape\textcolor{mygreen}{#1}}{}{}
+\renewcommand{\l@section}{\mdseries\@dottedtocline{1}{3.0em}{1.6em}}
+\makeatother
+
+% python syntax highlighting
+\usepackage{listings}
+\definecolor{backcolour}{HTML}{F7F7F7}
+\definecolor{ansi-green-intense}{HTML}{007427}
+\definecolor{ansi-gray}{HTML}{959D99}
+\definecolor{ansi-red-intense}{HTML}{B22B31}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{ansi-red-intense},
+    keywordstyle=\color{ansi-green-intense},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% color boxes
+\usepackage[most]{tcolorbox}
+
+\NewTColorBox[auto counter,number within=chapter]{exemplo}{m+O{}}{%
+    enhanced,
+    breakable,
+    colframe=mybeige,
+    colback=mybeige,
+    coltitle=mybrown,
+    fonttitle=\bfseries,
+    title={Exemplo~\thetcbcounter~},
+    label={ex:#1},
+    attach title to upper=\quad,
+    lowerbox=ignored
+}
+
+% metadata
+\usepackage[pdftex,
+            pdfauthor={Rubens Machado},
+            pdftitle={Curso de extensao: Astronomia de Posicao},
+            pdfproducer={Latex},
+            pdfcreator={pdflatex}]{hyperref}
+
+% link colors
+\hypersetup{colorlinks=true, urlcolor=mybrown, linkcolor=mybrown}

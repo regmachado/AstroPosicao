@@ -1,0 +1,84 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+% latitude e -tempo sideral (graus)
+\def\lat{40}
+
+% projeção da figura como um todo
+\tdplotsetmaincoords{70}{103}
+% \tdplotsetmaincoords{90}{90}
+
+% coordenadas esféricas que serão usadas para as rotações
+% ver https://texample.net/tikz/examples/the-3dplot-package/
+\pgfmathsetmacro{\rvec}{1}
+\pgfmathsetmacro{\thetavec}{-90+\lat}
+\pgfmathsetmacro{\phivec}{90}
+
+\begin{tikzpicture}[scale=2.7,tdplot_main_coords]
+\def\LX{2.8}
+\def\LY{2.8}
+\path [use as bounding box] (-0.38*\LX cm, -0.5*\LY cm) rectangle (0.5*\LX cm, 0.5*\LY cm);
+
+% origem
+\coordinate (O) at (0,0,0);
+
+% pontos cardeais no plano do horizonte
+\draw[thick, draw=none] (0,0,0) -- ( 1, 0,0) node[below]{$O$}; % eixo  x
+\draw[thick, draw=none] (0,0,0) -- (-1, 0,0) node[above]{$L$}; % eixo -x
+\draw[thick, draw=none] (0,0,0) -- ( 0, 1,0) node[right]{$S$}; % eixo  y
+\draw[thick, draw=none] (0,0,0) -- ( 0,-1,0) node[left ]{$N$}; % eixo -y
+
+
+% inclinar o eixo
+\tdplotsetrotatedcoords{90}{\thetavec}{270}
+
+% mesma origem
+\tdplotsetrotatedcoordsorigin{(O)}
+
+% eixo 
+\draw[very thick, -, tdplot_rotated_coords] (0,0,0) -- (0,0,-1.2) node[below right]{$PS$};
+
+% plano do horizonte
+\draw[fill, greenhorizon, opacity=0.75] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Horizonte}, text color=mydarkgreen, text align={left}}, decorate] (0.7,0.5) to [bend right=14] (0,1);
+
+% eixo
+\draw[very thick, -, tdplot_rotated_coords] (0,0,0) -- (0,0,1.2) node[above left]{$PN$};
+
+\def\decA{0}
+\def\decB{15}
+\def\decC{30}
+
+\tikzmath{
+\RA = cos(\decA);
+\RB = cos(\decB);
+\RC = cos(\decC);
+\HA = sin(\decA);
+\HB = sin(\decB);
+\HC = sin(\decC);
+}
+
+% incorrect approximation:
+\tikzmath{
+\coseA = cos(\lat)^2 + sin(\lat)^2 * sqrt(1-(sin(\decA)/cos(\lat))^2);
+\coseB = cos(\lat)^2 + sin(\lat)^2 * sqrt(1-(sin(\decB)/cos(\lat))^2);
+\coseC = cos(\lat)^2 + sin(\lat)^2 * sqrt(1-(sin(\decC)/cos(\lat))^2);
+\eA = acos( \coseA );
+\eB = acos( \coseB );
+\eC = acos( \coseC );
+}
+
+\tdplotdrawarc[thick, red,<-, tdplot_rotated_coords]{(0,0,\HA)}{\RA}{0-\eA}{180+\eA}{}{}
+\tdplotdrawarc[thick, red,<-, tdplot_rotated_coords]{(0,0,\HB)}{\RB}{0-\eB}{180+\eB}{}{}
+\tdplotdrawarc[thick, red,<-, tdplot_rotated_coords]{(0,0,\HC)}{\RC}{0-\eC-3}{183+\eC}{}{} %fudge
+
+
+% esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm); 
+
+\end{tikzpicture}
+
+\end{document}

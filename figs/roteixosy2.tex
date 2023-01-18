@@ -1,0 +1,44 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\begin{tikzpicture}[scale=8]
+\path [use as bounding box] (-1.2mm,0mm) rectangle (0.5mm,3.2mm);
+
+\coordinate (O) at (0,0) {}; 
+\coordinate (ex) at (1,0) {};
+\coordinate (ey) at (0,1) {};
+\def\xp{0.5}
+\def\yp{0.6}
+\coordinate (P) at (\xp,\yp) {};
+
+\def\th{30}
+
+\tikzmath{
+\xr = \xp * cos(\th) + \yp * sin(\th);
+\yr = -\xp * sin(\th) + \yp * cos(\th);
+\exr = cos(\th);
+\eyr = sin(\th);
+}
+
+\tikzmath{
+\b = \yr / cos(\th);
+\c = \yp - \b;
+}
+
+\coordinate (B) at (0,\b) {};
+\coordinate (R) at (-0.1,\yr) {};
+
+\draw[thick, black] (O)--(B) node[midway, right] {$b$};
+\draw[thick, black] (B)--(R);
+\draw[thick, black] (O)--(R) node[midway, left] {$y'$};
+
+\tkzMarkRightAngle[draw=black, size=0.03](O,R,B);
+\tkzMarkAngle[size=0.1, mark=none](B,O,R)
+\tkzLabelAngle[pos = 0.12](B,O,R){$\theta$}
+
+\end{tikzpicture}
+ 
+\end{document}

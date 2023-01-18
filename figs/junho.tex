@@ -1,0 +1,71 @@
+\documentclass[border=0mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\definecolor{mygrass}{HTML}{3f613a}
+
+\begin{tikzpicture}
+ 
+\def\R{2.6}
+\def\eps{23}
+\tikzmath{
+\xp = \R * cos(\eps);
+\yp = \R * sin(\eps); 
+}
+
+\coordinate (O) at (0,0) {}; %center of the Earth
+
+\coordinate (E1) at (\R,0) {}; %Equator (day side)
+\coordinate (E2) at (\xp,\yp) {}; %cancer
+\coordinate (E3) at (\xp,-\yp) {}; %capricorn
+
+\coordinate (S1) at (3.5*\xp,0) {}; %Sun1
+\coordinate (S2) at (3.5*\xp,\yp) {}; %Sun2
+\coordinate (S3) at (3.5*\xp,-\yp) {}; %Sun2
+
+% Sun rays
+\draw[very thick, orange] (S1)--(E1);
+\draw[very thick, orange] (S2)--(E2);
+\draw[very thick, orange] (S3)--(E3);
+\draw[very thick, orange, dashed] (E1)--(0.0,0);
+
+\def\rot{-23}
+
+% trópico de câncer
+\draw[dashed, thick, black, rotate=\rot] (\xp,\yp)--(-\xp,\yp) node[anchor=south west, xshift=2mm, yshift=-1.5mm, rotate=\rot] {Trópico de Câncer};
+
+% trópico de capricórnio
+% \draw[dashed, thick, black, rotate=\rot] (\xp,-\yp)--(-\xp,-\yp) node[anchor=south west, yshift=-1mm, rotate=\rot] {Trópico de Capricórnio};
+
+% Earth
+\draw[thick, black, rotate=\rot] (O) circle (\R);
+
+% Poles
+\draw[thick, black, rotate=\rot] (0,\R)--++(0,0.2) node[above, rotate=\rot] {$N$};
+\draw[thick, black, rotate=\rot] (0,-\R)--++(0,-0.2) node[below, rotate=\rot] {$S$};
+
+% Equator
+\draw[thick, black, rotate=\rot] (-\R,0)--(\R,0);
+\draw[draw=none, rotate=\rot] (\R,0)--(-\R,0) node[anchor=north west, yshift=1mm, rotate=\rot] {Equador da Terra};
+
+% person
+\draw[draw=none, mygrass, fill=mygrass, rotate=\rot] (E1) node[rotate=-90, yshift=4mm] {\Strichmaxerl[3]};
+
+% Angle: latitude sul
+% \tkzMarkAngle[mark=none, draw=black, size=0.8](E1,O,E2);
+% \tkzLabelAngle[dist=1](E1,O,E2){$\varphi$};
+
+% Angle: latitude norte
+\tkzMarkAngle[mark=none, draw=black, size=0.8](E3,O,E1);
+\tkzLabelAngle[dist=1](E3,O,E1){$\varphi$};
+
+% \node[mygrass] at (6,3) [center] {{\bf Equinócio de março} ou };
+% \node[mygrass] at (6,2.5) [center] {{\bf Equinócio de setembro}};
+% \node[mygrass] at (6,3) [center] {{\bf Solstício de dezembro}};
+\node[mygrass] at (6,3) [center] {{\bf Solstício de junho}};
+
+\end{tikzpicture}
+ 
+\end{document}

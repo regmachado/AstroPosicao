@@ -1,0 +1,111 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+
+\tdplotsetmaincoords{70}{44}
+\begin{tikzpicture}[scale=7,tdplot_main_coords]
+
+\def\r{1}
+\def\COB{60}
+\def\th{50}
+\def\ph{20}
+
+\tikzmath{
+\xC = \r * cos(\COB);
+\yC = \r * sin(\COB);
+}
+
+\tikzmath{
+\xA =  \r * sin(\th) * cos(\ph);
+\yA =  \r * sin(\th) * sin(\ph);
+\zA =  \r * cos(\th);
+}
+
+\tikzmath{
+\OK = \r / cos(90-\th);
+\OL = \r / cos(90-\th);
+}
+
+\tikzmath{
+\BK = \OK - \r;
+\xL = \xC + \BK * cos(\COB);
+\yL = \yC + \BK * sin(\COB);
+}
+
+\coordinate (O) at (0,0,0);
+\coordinate (A) at (\xA, \yA,\zA);
+\coordinate (B) at (\r,0,0);
+\coordinate (C) at (\xC, \yC,0);
+\coordinate (K) at (\OK,0,0);
+\coordinate (L) at (\xL,\yL,0);
+
+\draw[thick, red] (A) to[bend left=14] (B)  node[left, yshift=3cm] {{$c$}};
+\draw[thick, red] (A) to[bend left=20] (C)  node[yshift=1.2cm] {{$b$}};
+\draw[thick, red] (B) to[bend right=20] (C) node[yshift=-1.2cm] {{$a$}};
+
+\node[left] at (O) {$O$};
+\draw[thick] (O)--(A) node[above] {$A$};
+\draw[thick] (O)--(B) node[below] {$B$};
+\draw[thick] (O)--(C) node[above right] {$C$};
+\draw[thick] (O)--(K) node[right] {$K$};
+\draw[thick] (O)--(L) node[right] {$L$};
+\draw[thick] (A)--(K);
+\draw[thick] (A)--(L);
+\draw[thick] (K)--(L);
+
+% right angle
+\tkzMarkRightAngle[draw=black, size=0.03](O,A,K);
+
+\fill[red] (A) circle(0.3pt);
+\fill[red] (B) circle(0.3pt);
+\fill[red] (C) circle(0.3pt);
+
+\end{tikzpicture}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

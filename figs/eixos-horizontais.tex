@@ -1,0 +1,35 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\definecolor{greenhorizon}{HTML}{808000}
+\definecolor{bluesky}{HTML}{0096FF}
+\definecolor{mydarkgreen}{HTML}{343400}
+
+\tdplotsetmaincoords{70}{100} 
+\begin{tikzpicture}[tdplot_main_coords, scale=2.8]
+\def\LX{2.6}
+\def\LY{2.6}
+\path [use as bounding box] (-0.5*\LX cm, -0.4*\LY cm) rectangle (0.4*\LX cm, 0.48*\LY cm);
+
+% plano horizontal
+\tdplotsetrotatedcoords{0}{0}{0};
+\draw[fill, tdplot_rotated_coords, greenhorizon] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Horizonte}, text color=mydarkgreen, text align={left}}, decorate] (0.65,0.5) to [bend right=14] (0,1);
+
+% % esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm);
+
+% Axes in 3d coordinate system
+\draw[thick, ->] ( 0, 0, 0) -- ( 0, 0, 1.2)  node[above]{$z$};
+\draw[thick, ->]  ( 0, 0, 0) -- ( 0,-1.2, 0) node[left]{$x$};
+\draw[thick, ->]  ( 0, 0, 0) -- (-1.2, 0, 0) node[above]{$y$};
+
+\draw[draw=none,thick, ->]  ( 0, 0, 0) -- ( 0,-0.95, 0)  node[below] {$N$};
+\draw[draw=none,thick, ->]  ( 0, 0, 0) -- (-0.95, 0, 0)  node[below] {$L$};
+
+\end{tikzpicture}
+ 
+\end{document}

@@ -1,0 +1,96 @@
+\chapter{Introdução}
+\label{cap01}
+
+\section{Astronomia de Posição}
+
+% que é Astronomia
+A Astronomia de Posição, também chamada de Astronomia Fundamental ou ainda Astronomia Esférica, trata do estudo dos movimentos dos astros no céu, sem entrar no mérito da natureza física\footnote{Alguns sustentam que essa seria a suposta distinção entre os termos \textit{Astronomia} e \textit{Astrofísica}, sendo o segundo usado para indicar o estudo dos processos físicos. Em alguns contextos específicos, pode até ser útil usar o termo mais restritivo \textit{Astrofísica} com o propósito de separar a Astronomia de Posição dos demais ramos de estudo. Ou seja, \textit{Astronomia} inclui tudo, enquanto que \textit{Astrofísica} exclui Astronomia de Posição. No entanto, na maioria das situações, a distinção não é muito relevante.} desses corpos celestes. Em outras palavras, estamos interessados em meramente descrever as posições dos astros. Essas posições são \textit{angulares}: precisamos de 2 ângulos para especificar a localização de uma estrela na esfera celeste, da mesma forma que precisamos de 2 ângulos (latidude e longitude) para especificar a localização de uma cidade na superfície do globo terrestre.
+
+% sistemas de coordenadas
+Existem diferentes sistemas de coordenadas. Em um deles, damos os ângulos em relação ao `chão' de um dado observador --- seu horizonte. Nesse sistema, é claro que os valores dos ângulos mudam dependendo de onde o observador está na Terra. Além disso, o céu gira (de Leste para Oeste). Por esses motivos, as coordenadas angulares de uma estrela estão mudando o tempo todo nesse sistema. Existe um outro sistema que usa como referência algo mais absoluto: o equador, que é o mesmo para todos os observadores. Já nesse sistema, os valores dos ângulos não mudam ao longo da noite: são uma propriedade `fixa' de cada estrela. Os detalhes desses conceitos virão nos próximos capítulos.
+
+\section{Objetivos do curso}
+
+% objetivo: conversão
+Neste curso aprenderemos a fazer a conversão entre os dois sistemas de coordenadas que foram esboçados acima: um relativo ao observador, e um `fixo'. Ocorre que além da variação temporal, esses sistemas de eixos são inclinados entre si; essas são as origens da dificuldade. Essa conversão de coordenadas pode parecer um árido detalhe de procedimentos matemáticos, mas é uma habilidade poderosa: isso nos permite prever observações astronômicas. Ou seja, saber previamente quais estrelas serão observáveis e quando. Já fica destacada uma propriedade importante do céu: cada estrela não é visível o tempo todo. Em certas épocas do ano, em certos horários da noite, algumas estrelas estarão acima do horizonte e outras estarão abaixo. E também depende de onde a pessoa está na superfície da Terra.
+
+% objetivo: perguntas
+O objetivo geral do curso pode ser exergado do seguinte modo. Pretendemos ser capazes de responder uma pergunta como esta:
+%
+\begin{quote}
+\itshape Se estivermos em Curitiba no dia 11 de abril de 2023, às 20h30min, a estrela Sírius estará visível no céu?
+\end{quote}
+%
+Como é possível saber algo assim? Mesmo quem ainda não está familiarizado com estudos de astronomia estará correto ao supor que existem programas de computador que seguramente dão a resposta pronta. Sim, mas a questão é entender como, sem tratar o computador como uma caixa-preta. O que exatamente está sendo calculado? Tem que ser possível compreender o procedimento. Afinal, os astrônomos da antigüidade também eram capazes de obter esses resultados. A formulação da pergunta sugere que são informações necessárias: a localização geográfica do observador; a data; o horário. Como exatamente essas grandezas entram na conta? Na realidade, podemos deixar a pergunta ainda mais quantitativa. Supondo que a resposta anterior seja afirmativa, uma pergunta mais interessante seria:
+%
+\begin{quote}
+\itshape Se estivermos em Curitiba no dia 11 de abril de 2023, às 20h30min, para onde exatamente deveríamos apontar um telescópio para observar Sírius?
+\end{quote}
+%
+Nessa cidade, nessa data, nesse horário, gire o telescópio tantos graus a partir do Norte e eleve tantos graus a partir do chão: lá estará Sírius. Tudo isso pode ser calculado. Vamos aprender como exatamente esses dois ângulos são obtidos. Sem supor nada previamente, vamos deduzir todas as contas, passo a passo, a partir de princípios primeiros.
+
+% atividades práticas
+Depois de ter calculado diretamente as coordenadas de uma estrela, vamos fazer uma observação noturna ao fim do curso, para medir os dois ângulos na prática. Mas para isso precisaremos conhecer a direção do ponto cardeal Norte. Nós já teremos previamente determinado a direção da linha Norte-Sul com boa precisão. Usando uma bússola? Pelo contrário: usando astronomia, através de observações da sombra do Sol ao redor do meio-dia (no momento de sombra mínima). Além disso, para fazer as contas, precisaremos conhecer a latidude geográfica de onde estamos. Teremos determinado diretamente nossa latitude com um método engenhoso: usando a sombra do Sol em um momento especial do ano: o dia do equinócio de outono do hemisfério Sul (21 de março), quando a sombra estiver alinhada com a linha Norte-Sul determinada anteriormente.
+
+% python
+Este curso também tem uma componente computacional. As equações que transformam coordenadas poderiam ser usadas normalmente, multiplicando diversos senos e cossenos à mão com lápis e papel. Nós vamos implementar essas equações em um programa escrito em Python. Quem estiver começando a aprender programação também deve se beneficiar da experiência, que não vai exigir conhecimentos avançados.
+
+% suma
+Em suma, o objetivo é que os participantes do curso aprendam os conceitos de esfera celeste necessários para entender os sistemas de coordenadas e, em seguida, aprendam as transformações que permitem prever observações. Teremos a oportunidade de construir tudo com as próprias mãos.
+
+Resumindo, as atividades serão:
+\begin{itemize}
+\setlength\itemsep{0.2em}
+\item Estudar os elementos da esfera celeste
+\item Aprender as definições dos sistemas de coordenadas
+\item Determinar a linha Norte-Sul na prática
+\item Determinar a latitude geográfica na prática
+\item Fazer as transformações dos sistemas de coordenadas (com lápis e papel)
+\item Implementar essas equações em Python
+\item Prever as coordenadas de uma estrela
+\item Medir suas coordenadas em uma observação na prática
+\end{itemize}
+
+
+\section{Cronograma de atividades}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{lccc}
+\rowcolor{mybeige!80!gray}  
+dia & data & Aula Teórica & Atividade Observacional \\
+&&&\\[-0.2em]
+\rowcolor{mybeige}
+terça              & 07/03/2023 & Aula 1 & \\
+\rowcolor{mybeige}
+quarta             & 08/03/2023 & Aula 2 & \\
+&&&\\[-0.2em]
+\rowcolor{mybeige} 
+terça              & 14/03/2023 & Aula 3 & Observação 1 (meio-dia)\\
+\rowcolor{mybeige} 
+quarta             & 15/03/2023 & Aula 4 & \\
+&&&\\[-0.2em]
+\rowcolor{mybeige}
+terça              & 21/03/2023 & Aula 5 & Observação 2 (meio-dia)\\
+\rowcolor{mybeige}
+quarta             & 22/03/2023 & Aula 6 & \\
+&&&\\[-0.2em]
+\rowcolor{mybeige} 
+terça              & 28/03/2023 & Aula 7 & \\
+\rowcolor{mybeige} 
+quarta             & 29/03/2023 & Aula 8 & \\
+&&&\\[-0.2em]
+\rowcolor{mybeige} 
+terça              & 04/04/2023 & & Observação 3 (noite)\\
+\rowcolor{mybeige} 
+quarta             & 05/04/2023 & & Observação 4 (noite) \\        
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+\section{Stellarium}
+
+Existe um programa de mapa do céu muito usado, chamado \textit{Stellarium}\footnote{\url{https://stellarium.org}}. É um sotfware versátil, que traz uma imensa quantidade de informações sobre objetos astronômicos. De certa forma, ele responde imediatamente nossa pergunta sobre a observabilidade de determinada estrela em determinada data. Esse é um dos usos bastante difundidos do Stellarium: consultar visualmente a aparência do céu em qualquer data, tanto qualitativamente quanto quantitativamente, pois além de mostrar as estrelas e constelações, ele exibe as diversas coordenadas, e também informações como magnitudes etc. De fato, uma maneira rápida e eficaz de conferir contas de conversão de coordenadas é abrir o Stellarium e passar o mouse na coordenada desejada.
+
+Nós vamos empregar o Stellarium para ilustrar alguns conceitos da esfera celeste nos próximos capítulos. Por enquanto, é suficiente instalar o software e se familiarizar com a sua operação, que é bastante intuitiva. Para quem está estudando esfera celeste e coordenadas, uma das funcionalidades mais úteis do Stellarium é a passagem do tempo. Com o atalho \texttt{F5}, é possível escolher data e horário. Estando numa determinada noite, é possível avançar as horas continuamente com a roda do mouse e ver o céu girando de Leste para Oeste. Similarmente, é possível fixar um horário e avançar os dias ou meses. É muito instrutivo inspecionar esses padrões de movimentos (das estrelas e do Sol), ainda que qualitativamente num primeiro momento. Nos capítulos seguintes, vamos estudar os detalhes quantitativos e fazer bom proveito das visualizações do Stellarium.

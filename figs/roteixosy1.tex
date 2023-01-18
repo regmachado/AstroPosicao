@@ -1,0 +1,50 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\begin{tikzpicture}[scale=3]
+\path [use as bounding box] (-1mm,3mm) rectangle (5mm,7mm);
+
+\coordinate (O) at (0,0) {}; 
+\coordinate (ex) at (1,0) {};
+\coordinate (ey) at (0,1) {};
+\def\xp{0.5}
+\def\yp{0.6}
+\coordinate (P) at (\xp,\yp) {};
+
+% 
+% \draw[->, thick, black, rotate=0] (O)--(ex) node[anchor=west, rotate=0] {$x$};
+% \draw[->, thick, black, rotate=0] (O)--(ey) node[anchor=south, rotate=0] {$y$};
+% \draw[dashed, thin, black, rotate=0] (\xp,0)--(P);
+% \draw[dashed, thin, black, rotate=0] (0,\yp)--(P);
+
+\def\th{30}
+
+\tikzmath{
+\xr = \xp * cos(\th) + \yp * sin(\th);
+\yr = -\xp * sin(\th) + \yp * cos(\th);
+\exr = cos(\th);
+\eyr = sin(\th);
+}
+
+\tikzmath{
+\b = \yr / cos(\th);
+\c = \yp - \b;
+}
+
+\coordinate (B) at (0,\b) {};
+\coordinate (C) at (0,\b+\c) {};
+
+\draw[thick, black] (C)--(P) node[midway, above] {$x$};
+\draw[thick, black] (B)--(C) node[midway, left] {$c$};
+\draw[thick, black] (P)--(B);
+
+\tkzMarkRightAngle[draw=black, size=0.05](P,C,B);
+\tkzMarkAngle[size=0.15, mark=none](C,P,B)
+\tkzLabelAngle[pos = 0.25](C,P,B){$\theta$}
+
+\end{tikzpicture}
+ 
+\end{document}

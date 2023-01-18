@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage{pres/preamble}
+
+\begin{document}
+
+\include{pres/cover}
+
+\include{pres/preface}
+
+\setcounter{tocdepth}{1}
+{
+\hypersetup{hidelinks}
+\tableofcontents
+}
+
+% format chapter titles
+\titleformat{\chapter}[block]
+{\flushright\bfseries\Huge}{\color{mygreen}\fontsize{80}{120}\selectfont\thechapter}{0pt~\linebreak[1cm]}{\color{mygreen}\Huge}
+
+\part{Conceitos astronômicos}
+
+\include{caps/cap01}
+\include{caps/cap02}
+
+\include{caps/cap03}
+\include{caps/cap04}
+
+\part{Transformações de coordenadas}
+
+\include{caps/cap05}
+\include{caps/cap06}
+
+\part{Programação em Python}
+
+\include{caps/cap07}
+\include{caps/cap08}
+
+\part{Atividades observacionais}
+
+\include{caps/cap09}
+\include{caps/cap10}
+\include{caps/cap11}
+\include{caps/cap12}
+ 
+% format chapter title
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\color{mygreen}\chaptertitlename\ \thechapter}{20pt}{\color{mygreen}\Huge}
+
+\begin{thebibliography}{9}
+% \thispagestyle{empty}
+\bibitem[Boczko(1984)]{Boczko} Boczko R., 1984, \textit{Conceitos de astronomia}, Editora Edgard Bl\"ucher
+\bibitem[Gastao(2022)]{Gastao} Lima Neto G.~B., 2022, \textit{Astronomia de Posição}, IAG/USP
+\end{thebibliography}
+
+% back cover
+\clearpage
+{
+\pagecolor{mygreen}
+\thispagestyle{empty}
+~
+}
+
+\end{document}

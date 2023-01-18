@@ -1,0 +1,50 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{100}
+\begin{tikzpicture}[tdplot_main_coords, scale=3.0]
+
+% HORIZONTAIS
+\tdplotsetrotatedcoords{0}{0}{0};
+
+% horizonte
+\draw[fill, tdplot_rotated_coords, greenhorizon, opacity=0.75] (0,0,0) circle (1);
+\draw[tdplot_rotated_coords, decoration={text along path, text={Horiz.}, text color=mydarkgreen, text align={center}}, decorate] (0.7,0.3) to [bend right=14] (0.2,0.9);
+
+% zênite
+\draw[greenhorizon, thick, ->, tdplot_rotated_coords] ( 0, 0, 0) -- ( 0, 0, 1.2) node[above]{$Z$};
+
+% EQUATORIAIS
+\def\phis{30}
+\tdplotsetrotatedcoords{-70}{0}{0};
+\tdplotsetrotatedcoords{-90}{\phis}{0};
+
+% equador celeste
+\draw[fill, tdplot_rotated_coords, purpleequator, opacity=0.75] (0,0,0) circle (1);
+\draw[tdplot_rotated_coords, decoration={text along path, text={Eq.}, text color=mydarkpurple, text align={center}}, decorate] (1,0.5) to [bend right=14] (0.4,0.2);
+
+% pólo norte 
+\draw[purpleequator, ->, thick, tdplot_rotated_coords] (0,0,0) -- (0,0,1.2) node[above] {$PN$};
+  
+% pontos cardeais
+\draw[        ]  ( 0,-1, 0) -- ( 0, 1, 0);
+\draw[        ]  (-1, 0, 0) -- ( 1, 0, 0);
+
+% esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm); 
+
+\node[left] at ( 0,-1, 0) {$N$};
+\node[right] at ( 0, 1, 0) {$S$}; 
+\node[above] at (-1, 0, 0) {$L$};
+\node[below] at ( 1, 0, 0) {$O$};
+
+% latitide
+\tdplotsetrotatedcoords{0}{270}{-90};
+\draw[solid, white, thick, tdplot_rotated_coords] (0:0.85) arc (0:90-\phis:0.85) node[midway, anchor=south] {$\varphi$};
+ 
+\end{tikzpicture}
+ 
+\end{document}

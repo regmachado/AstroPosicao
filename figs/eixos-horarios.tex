@@ -1,0 +1,57 @@
+\documentclass[border=0mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\definecolor{bluesky}{HTML}{0096FF}
+\definecolor{purpleequator}{HTML}{8E4585}
+\definecolor{mydarkpurple}{HTML}{5b2c55}
+
+\def\lat{65}
+
+% projeção da figura como um todo
+\tdplotsetmaincoords{70}{100}
+
+% coordenadas esféricas que serão usadas para as rotações
+% ver https://texample.net/tikz/examples/the-3dplot-package/
+\pgfmathsetmacro{\rvec}{1}
+\pgfmathsetmacro{\thetavec}{-90+\lat}
+\pgfmathsetmacro{\phivec}{90}
+
+\begin{tikzpicture}[scale=2.8,tdplot_main_coords]
+\def\LX{2.6}
+\def\LY{2.6}
+\path [use as bounding box] (-0.3*\LX cm, -0.4*\LY cm) rectangle (0.5*\LX cm, 0.45*\LY cm);
+
+% origem
+\coordinate (O) at (0,0,0);
+
+% inclinar
+\tdplotsetthetaplanecoords{\phivec}
+\tdplotsetrotatedcoords{\phivec}{\thetavec}{270}
+
+% mesma origem
+\tdplotsetrotatedcoordsorigin{(O)}
+
+% equador celeste
+\draw[fill, tdplot_rotated_coords, purpleequator, opacity=0.75] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Equador}, text color=mydarkpurple, text align={left}}, decorate] (1.45,-0.5) to [bend right=40] (-1,-0.1);
+
+% eixos
+\draw[thick,tdplot_rotated_coords,->] (0,0,0) -- (0,0,1.2) node[above, yshift=0mm]{$z$}; %eixo z'
+\draw[thick,tdplot_rotated_coords,->] (0,0,0) -- (0,1.2,0) node[right, yshift=0mm]{$x$}; %eixo z'
+\draw[thick,tdplot_rotated_coords,->] (0,0,0) -- (1.2,0,0) node[below, yshift=0mm]{$y$}; %eixo z'
+
+% esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm); 
+
+% meridiano
+\tdplotsetthetaplanecoords{90}
+\draw[thick,white, solid, tdplot_rotated_coords] (1,0,0) arc (0:90:1);
+\draw[tdplot_rotated_coords, decoration={text along path, text={Meridiano}, text color=white, text align={center}}, decorate] (0.86,0) to [bend right=-44] (0,0.91);
+\tdplotsetthetaplanecoords{-90}
+
+\end{tikzpicture}
+
+\end{document}

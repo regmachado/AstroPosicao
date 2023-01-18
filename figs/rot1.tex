@@ -1,0 +1,29 @@
+\documentclass[tikz, border=0]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\tdplotsetmaincoords{40}{120} % point of view
+\begin{tikzpicture}[scale=1, tdplot_main_coords]
+\def\LX{2.5}
+\def\LY{2.5}
+\path [use as bounding box] (-0.5*\LX cm, -0.4*\LY cm) rectangle (0.5*\LX cm, 0.5*\LY cm);
+
+\draw[dashed, black, thin, -] (0,0,0) -- (0,0,1.2);
+
+\tdplotsetrotatedcoords{-90}{45}{110}
+\coordinate (O) at (0,0,0);
+\tdplotsetrotatedcoordsorigin{(O)}
+
+\draw[black, thick, ->, tdplot_rotated_coords] (0,0,0) -- (1,0,0) node[anchor=north east]{$y$};
+\draw[black, thick, ->, tdplot_rotated_coords] (0,0,0) -- (0,1,0) node[anchor=west]{$x$};
+\draw[black, thick, ->, tdplot_rotated_coords] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+\tdplotsetthetaplanecoords{-45}
+
+\tdplotdrawarc[->,orange, tdplot_rotated_coords]{(0,0,0)}{1.2}{24}{0}{}{}
+
+\end{tikzpicture}
+
+\end{document}

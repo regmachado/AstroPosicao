@@ -1,0 +1,26 @@
+\documentclass[tikz, border=0]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{120} % point of view
+\begin{tikzpicture}[scale=1, tdplot_main_coords]
+\def\LX{2.5}
+\def\LY{2.5}
+\path [use as bounding box] (-0.5*\LX cm, -0.4*\LY cm) rectangle (0.5*\LX cm, 0.5*\LY cm);
+
+
+\draw[black, thick, ->] (0,0,0) -- (1,0,0) node[anchor=north east]{$y$};
+\draw[black, thick, ->] (0,0,0) -- (0,1,0) node[anchor=west]{$x$};
+\draw[black, thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+\begin{scope}[canvas is xy plane at z=0.4]
+\draw[orange, ->] (0,-0.3) arc (0:240:0.3);
+\end{scope}
+
+\draw[black, thick] (0,0,0.6) -- (0,0,0.9);
+
+\end{tikzpicture}
+
+\end{document}

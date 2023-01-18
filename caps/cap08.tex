@@ -1,0 +1,211 @@
+\chapter{Um programa completo}
+
+O programa escrito no capítulo anterior supunha que o tempo sideral já era conhecido. Neste capítulo, vamos escrever uma função que nos permita calcular o $TS$ de qualquer data e horário. Assimilando essa função do tempo sideral às anteriores, teremos um programa completo que prevê qualquer observação.
+
+Serão apresentadas 4 abordagens diferentes para se calcular o tempo sideral: contagem explícita de dias; contagem de dias lançando mão de uma biblioteca de Python; uso da Data Juliana; e tempo sideral diretamente com biblioteca de Python.
+
+\section{Contagem explícita de dias}
+\label{sec:ts1}
+
+Partindo de uma data e horário quaisquer, uma maneira de estimar aproximadamente o tempo sideral é adotar o procedimento que já usamos nos exemplos da Seção~\ref{sec:ts}. Para isso, é necessário contar o número de dias decorridos desde o equinócio de março. Automatizar essa contagem é um pouquinho mais inconveniente do que seria de se supor. Também é um bom exercício de programação. O enunciado do problema consiste em partir de uma data qualquer (dia $D$, mês $M$) e também do horário (hh:mm:ss) e se perguntar qual o número de dias decorridos desde o meio-dia de 21 de março.
+
+Por exemplo, se o dia for 10 de agosto e o horário for às 23\,h\,30 UT (como no exemplo \ref{ex:10ago}), os dados de entrada seriam valores da seguinte forma:
+
+\begin{lstlisting}[language=Python]
+dia = 10
+mes = 8
+hora = 23
+minuto = 30
+segundo = 0
+\end{lstlisting}
+
+\noindent Uma função de contagem de dias que receba esses valores, deveria retornar como resposta: 142 dias, 11 horas e 30 minutos, ou 142.4792 dias. Implementar esse programa fica como exercício.
+
+\section{Contagem de dias com datetime}
+\label{sec:ts2}
+
+Em Python, existe uma biblioteca chamada datetime, que serve justamente para manipular datas e horários. Entre outras coisas, é possível criar objetos do tipo:
+
+\begin{lstlisting}[language=Python]
+datetime.datetime(year, month, day, hour, minute, second)
+\end{lstlisting}
+
+\noindent e em seguida calcular diferenças, somar intervalos de tempo etc.
+
+O programa a seguir exemplifica o uso de algumas funções do datetime. Especificamente, é calculado nesse exemplo o número de dias decorridos desde 21/03/2023 ao meio-dia de Greewich até o dia 10/08/2023 às 20\,h\,30\,min no fuso de Brasília.
+
+\begin{lstlisting}[language=Python]
+import datetime
+from datetime import timedelta
+
+dia = 10
+mes = 8
+ano = 2023
+
+hora    = 20 
+minuto  = 30
+segundo =  0
+
+fuso = -3
+
+# Local Time
+# colocar o horario local no formato datetime
+LT = datetime.datetime(ano, mes, dia, hora, minuto, segundo)
+
+# Universal Time
+# subtrair o fuso para obter UT
+UT = LT - timedelta(hours=fuso)
+
+# colocar 21/mar no formato datetime
+Equinocio = datetime.datetime(ano, 3, 21, 12, 0, 0)
+
+# intervalo de tempo entre as duas datas
+dias_desde_21mar = (UT - Equinocio).total_seconds() / 86400
+
+print('UT = ',  UT.isoformat(' '))
+print('Dias desde equinocio = ', dias_desde_21mar)
+
+\end{lstlisting}
+\noindent\texttt{UT =  2023-08-10 23:30:00}\\
+\noindent\texttt{Dias desde equinocio =  142.47916666666666}\\
+
+Repare que a biblioteca datetime está meramente sendo usada para contar o número de dias. A estimativa de tempo sideral usando esse método é a mesma do método anterior.
+
+\section{Data Juliana}
+\label{sec:ts3}
+
+Aqui é introduzido um novo modo de calcular o tempo sideral, mais acurado do que as nossas estimativas que foram calculadas de maneira aproximada. Trata-se de uma fórmula proposta pela IAU (União Astronômica Internacional), que serve para calcular o tempo sideral em Greenwhich em qualquer instante. Mas essa fórmula envolve a chamada data juliana. 
+
+A \textbf{data juliana} é uma contagem de dias cujo zero foi definido como sendo o meio-dia do dia 1 de janeiro de 4713 a.C. 
+
+Para calcular o dia juliano, precisamos da data usual do calendário gregoriano (dia, mês e ano). Suponhamos que esses dados de entrada sejam da seguinte forma, para o exemplo da data 10/08/2023:
+
+\begin{lstlisting}[language=Python]
+D = 10
+M = 8
+A = 2023
+\end{lstlisting}
+
+\noindent Um algoritmo para o cálculo do dia juliano é apresentado na apostila do Gastão. Está implementado na função a seguir, que recebe como argumentos dia, mês e ano:
+
+\begin{lstlisting}[language=Python]
+def dia_juliano(D, M, A):
+    if(M<3):
+        A = A - 1
+        M = M + 12
+    A1 = int(A/100)
+    A2 = 2 - A1 + int(A1/4)        
+    if( (A<1582) & (M<10) & (D<4)):
+        A2 = 0
+    JD = int(365.25 * (A+4716)) + int(30.6001 * (M+1)) + D + A2 - 1524.5
+    return JD
+\end{lstlisting}
+
+\noindent Para o exemplo usado, resultará o dia juliano $JD = 2460166.5$. A fração 0.5 dia ocorre porque o resultado do algoritmo corresponde a 0\,h em UT. É possível checar rapidamente os valores das datas julianas no Stellarium.
+
+Existe uma grandeza auxiliar chamada de \textbf{século juliano}. É o número de séculos desde 1/1/2000, sendo que cada século tem 36525 dias. Seria o $T_{\rm J2000}$, mas podemos adotar a notação $T$ apenas. O século juliano $T$ é calculado a partir da data juliana $JD$ de acordo com a seguinte definição:
+%
+\begin{equation}
+T = \frac{JD - 2451545}{36525}
+\end{equation}
+%
+Com o dia juliano do exemplo, o século juliano vale aproximadamente $T = 0.2360438056$. Se desejarmos ter precisão de minutos no fim da conta, então o número de séculos precisará de da ordem de 8 casas decimais.
+
+Finalmente, podemos usar o valor do século juliano $T$ na fórmula da IAU\footnote{\url{https://ui.adsabs.harvard.edu/abs/1982A\%26A...105..359A}}. Esta equação fornece o tempo sideral em Greenwhich, em segundos:
+%
+\begin{equation}
+TS = 24110.54841 + 8640184.812866~T + 0.093104~T^2 - 0.0000062~T^3
+\end{equation}
+%
+Dividindo o resultado por 3600, teremos o $TS$ em horas, ainda à 0\,h de UT. Para outros horários, somar as horas. Por exemplo, se são 23\,h\,30\,min em UT, somar 23.5\,h. Para um valor mais acurado, devemos multiplicar as horas pelo fator 1.0027, que é a razão entre dia solar e dia sideral (no exemplo, $1.0027 \times 23.5\,{\rm h} = 23.5634$\,h) Assim, teremos o $TS$ em Greenwhich. Quando o valor dá maior que 24\,h, tomamos o resto da divisão inteira por 24. Por exemplo, se o resultado desse 26\,h, o tempo sideral seria 2\,h; se desse 49\,h, o tempo sideral seria 1\,h. No nosso exemplo, o tempo sideral em Greenwhich resulta ser 20.7790\,h.
+
+Finalmente, para passar para o $TS$ local, basta somar a longitude. Com a longitude de Curitiba ($-49.27^{\circ} = -3.285$\,h), o tempo sideral local do exemplo termina sendo 17.4943\,h, ou 17\,h\,29\,min\,39\,s. Constatamos que nossa estimativa no exemplo \ref{ex:10ago} tinha dado um valor próximo, com erro de apenas $\sim$4 minutos.
+
+\section{Tempo sideral com astropy}
+\label{sec:ts4}
+
+A última maneira de calcular o tempo sideral seria usando funções de Python prontas para isso. A biblioteca astropy é muito utilizada na astronomia profissional e tem uma função que calcula o tempo sideral. O programa a seguir exemplifica esse uso.
+
+\begin{lstlisting}[language=Python]
+from astropy import units as u
+from astropy.time import Time, TimezoneInfo
+from astropy.coordinates import EarthLocation
+from datetime import datetime
+
+# coordenadas geograficas de Curitiba
+lat = '-25d30m09s'
+lon = '-49d17m30s'
+location = EarthLocation(lat=lat, lon=lon)
+
+# data e horario
+dia = 10
+mes = 8
+ano = 2023
+h = 20
+m = 30
+s = 0
+
+# informa que o fuso vem a ser o UTC-3
+tzinfo = TimezoneInfo(utc_offset=-3*u.hour)
+
+# objeto datetime
+time = datetime(ano, mes, dia, h, m, s, tzinfo=tzinfo)
+
+# tempo com astropy
+t = Time(time, scale='utc', location=location)
+print('UT = ', t)
+
+
+# tempo sideral com astropy
+ts = t.sidereal_time('mean')
+print('TS = ', ts.hour)
+print('TS = ', ts)
+
+\end{lstlisting}
+\noindent\texttt{UT =  2023-08-10 23:30:00}\\
+\noindent\texttt{TS =  17.492862062339007}\\
+\noindent\texttt{TS =  17h29m34.3034s}\\
+
+
+\section{O programa final}
+
+Por fim, a culminação dos nossos esforços será reunir as ferramentas desenvolvidas anteriormente em um único programa. Na Seção \ref{sec:trans} havíamos implementado uma função que converte coordenadas, mas supondo o tempo sideral já dado. Agora o objetivo é escolher um dos métodos apresentados nas Seções \ref{sec:ts1} a \ref{sec:ts4} para calcular o $TS$ diretamente a partir de qualquer data e horário. Assim, dentro do mesmo programa, o $TS$ será calculado e em seguida será fornecido como argumento para a função que converte coordenadas. Teremos o procedimento completo, do começo ao fim.
+
+Agora você pode ecolher alguma estrela qualquer de sua preferência e calcular suas coordenadas para a noite da observação.
+
+\section{Um catálogo de estrelas}
+
+Depois que o programa estiver funcionando para uma dada estrela qualquer, seria possível editar facilmente as coordenadas ascensão reta e declinação no início do programa.
+
+Uma abordagem ainda mais automática seria fazer um programa que lê uma lista de coordenadas ($\alpha, \delta$) e imprime como saída uma lista de coordenadas ($h, A$), cabendo ao usuário editar o horário desejado da observação e o local.
+
+Um exercício extra interessante seria o seguinte. Primeiro, componha uma tabela contendo as coordenadas equatoriais das estrelas mais brilhantes de cada uma das constelações do zodíaco. Por exemplo, a estrela mais brilhante da constelação de Touro ($\alpha$ Tauri, também chamada de Aldebaran) tem as coordenadas:
+
+\begin{center}
+\begin{tabular}{ccccccc}
+\hline
+nome & ascensão reta & declinação  \\
+& (hh:mm:ss) & (dd:mm:ss) \\
+
+\hline
+&&\\
+Aldebaran ($\alpha$ Tauri) & $04~35~55.2$ & $+16~30~33.5$ \\
+&&\\
+&&\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Complete a tabela, buscando as coordenadas em alguma base de dados (talvez o SIMBAD\footnote{\url{https://simbad.cds.unistra.fr/simbad/}}). Salve em um arquivo de texto. Em seguida, faça o programa ler esse arquivo de texto, colocando cada grandeza (cada coluna) na variável apropriada. Agora, ao invés de efetuar os cálculos para 1 única estrela, o programa fará o mesmo para uma lista de 12 estrelas. A saída do programa vai ser um outro arquivo de texto: uma tabela de 12 linhas com as alturas e azimutes de cada estrela. Vai ser interessante reparar em quais estarão abaixo do horizonte numa dada noite, num dado horário.
+
+Você pode escolher uma dada noite e fazer um loop para rodar o programa de hora em hora para ver como as alturas mudam.
+
+Alternativamente, pode fixar um horário depois do pôr do Sol e rodar o programa de mês em mês para ver quais constelações estarão visíveis.
+
+Em última análise, é isso o que o Stellarium está fazendo por dentro. E também é isso que os astrônomos da antigüidade já tinham compreendido.
+
+\vspace{2cm}
+\begin{center}
+ $\star$
+\end{center}

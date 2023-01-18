@@ -1,0 +1,113 @@
+\documentclass[tikz, border=0mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+% ascensão reta e declinação (graus)
+\def\ra{30}
+\def\dec{40}
+
+% latitude e -tempo sideral (graus)
+\def\lat{65}
+\def\TS{-75}
+
+% ângulo horário (graus)
+\tikzmath{
+\H = \TS - \ra;
+}
+
+% projeção da figura como um todo
+\tdplotsetmaincoords{70}{100}
+
+% coordenadas esféricas que serão usadas para as rotações
+% ver https://texample.net/tikz/examples/the-3dplot-package/
+\pgfmathsetmacro{\rvec}{1}
+\pgfmathsetmacro{\thetavec}{-90+\lat}
+\pgfmathsetmacro{\phivec}{90}
+
+\begin{tikzpicture}[scale=4,tdplot_main_coords]
+\def\LX{2.2}
+\def\LY{2.3}
+\path [use as bounding box] (-0.4*\LX cm, -0.45*\LY cm) rectangle (0.5*\LX cm, 0.5*\LY cm);
+
+% origem
+\coordinate (O) at (0,0,0);
+
+% pontos cardeais no plano do horizonte
+\draw[thick] (0,0,0) -- ( 1, 0,0) node[below]{$O$}; % eixo  x
+\draw[thick] (0,0,0) -- (-1, 0,0) node[above]{$L$}; % eixo -x
+\draw[thick] (0,0,0) -- ( 0, 1,0) node[right]{$S$}; % eixo  y
+\draw[thick] (0,0,0) -- ( 0,-1,0) node[left ]{$N$}; % eixo -y
+
+% zênite
+\draw[thick,-] (0,0,0) -- (0,0,1.0) node[above, yshift=3mm]{$Z$};
+
+% plano do equador celeste
+\draw[fill, greenhorizon, opacity=0.75] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Horizonte}, text color=mydarkgreen, text align={left}}, decorate] (0.65,0.7) to [bend right=14] (0,1);
+
+% inclinar por 90deg para poder plotar latitude
+\tdplotsetthetaplanecoords{\phivec}
+
+% plotar latitude
+\tdplotdrawarc[thick,gray,->,tdplot_rotated_coords]{(0,0,0)}{0.8}{-90}{-90+\lat}{left}{$\varphi$}
+
+% inclinar o eixo z por -(90-DEC)
+% rotacionar por TS para que o novo eixo-x seja o ponto vernal
+\tdplotsetrotatedcoords{\phivec}{\thetavec}{\TS}
+
+% mesma origem
+\tdplotsetrotatedcoordsorigin{(O)}
+
+% equador celeste
+\draw[fill, tdplot_rotated_coords, purpleequator, opacity=0.75] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Equador}, text color=mydarkpurple, text align={left}}, decorate] (1.45,-0.5) to [bend right=40] (-1,-0.1);
+
+% pólo norte celeste
+\draw[thick,tdplot_rotated_coords,-] (0,0,0) -- (0,0,1) node[above, yshift=2mm]{$PN$}; %eixo z'
+
+% esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm); 
+
+% coordenadas cartesianas da estrela (nos eixos do sistema equatorial)
+\tikzmath{
+\xs = cos(\dec) * cos(\ra);
+\ys = cos(\dec) * sin(\ra);
+\zs = sin(\dec);
+}
+
+% estrela
+\draw[white, draw=none, tdplot_rotated_coords] (\xs, \ys, \zs) node[]{\Large$\star$};
+
+% ascensão reta
+\tdplotdrawarc[thick, myyellow,->,tdplot_rotated_coords]{(0,0,0)}{1}{0}{\ra}{anchor=north west,color=black}{\textcolor{myyellow}{$\alpha$}}
+\tdplotdrawarc[thick, myyellow,->,tdplot_rotated_coords]{(0,0,0)}{1}{-\TS}{\ra}{anchor=north west,color=black}{\textcolor{myyellow}{$H$}}
+
+% ponto vernal
+\draw[black, fill=black, tdplot_rotated_coords] (1,0,0) circle (0.08mm) node[below]{\Aries};
+
+% pólo norte
+\draw[black, fill=black, tdplot_rotated_coords] (0,0,1) circle (0.08mm);
+
+% rotacionar o equador ao redor do eixo x, para poder plotar declinações
+\tdplotsetrotatedthetaplanecoords{\ra}
+
+% declinação
+\tdplotdrawarc[thick,->,tdplot_rotated_coords,color=myred]{(0,0,0)}{1}{90}{90-\dec}{anchor=south west,color=black}{\textcolor{myred}{$\delta$}}
+
+% meridiano
+\tdplotsetthetaplanecoords{90}
+\draw[thick,white, solid, tdplot_rotated_coords] (1,0,0) arc (0:90:1);
+\draw[tdplot_rotated_coords, decoration={text along path, text={Meridiano}, text color=white, text align={center}}, decorate] (0.91,0) to [bend right=-44] (0,0.91);
+\tdplotsetthetaplanecoords{-90}
+
+% zênite
+\draw[black, fill=black] (0,1,0) circle (0.08mm);
+
+% sul
+\draw[black, fill=black] (0,0,1) circle (0.08mm);
+
+\end{tikzpicture}
+
+\end{document}

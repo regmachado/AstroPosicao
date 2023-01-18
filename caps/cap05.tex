@@ -1,0 +1,340 @@
+\chapter{Trigonometria esférica}
+
+Neste capítulo, vamos usar trigonometria esférica para obter transformações de coordenadas horárias para coordenadas horizontais. 
+
+\section{Triângulo esférico.}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+\centering
+\includestandalone{figs/trianguloabc}
+\caption{Um triângulo esférico}
+\label{fig:trianguloabc}
+\end{wrapfigure}
+%
+Consideremos 3 pontos na superfície de uma esfera, definindo um triângulo esférico. Os lados desse triângulo esférico não são segmentos de reta, mas sim arcos de grandes círculos. Diferentemente da geometria plana (euclidiana), em um triângulo esférico, a soma dos ângulos internos é maior que $180^{\circ}$. O triângulo esférico da Fig.~\ref{fig:trianguloabc} tem lados $a$, $b$ e $c$ e ângulos $A$, $B$ e $C$.
+
+Para nossos fins, o raio da esfera é suposto unitário. Se o centro da esfera for o ponto $O$, então $OB$ e $OC$ são raios. A abertura entre $OB$ e $OC$ vem a ser o ângulo $a$. Já o ângulo $A$ é o ângulo com que os lados $b$ e $c$ se encontram. Está claro que fixados os dois pontos que definem $a$, seria possível ter diferentes ângulos $A$ dependendo da posição do terceiro ponto. Ou seja, $A$ e $a$ não são ângulos iguais.
+
+É possível obter as seguintes relações (ver a dedução detalhada a seguir):
+%
+\begin{eqnarray}
+\cos a &=& \cos b \cos c + \sin b \sin c \cos A        \label{tri1} \\[0.7em]
+\frac{\sin a}{\sin A} &=& \frac{\sin b}{\sin B}        \label{tri2} \\[0.7em] 
+\sin a \cos B &=& \cos b \sin c - \sin b \cos c \cos A \label{tri3}
+\end{eqnarray}
+
+\section*{Demonstração}
+
+\begin{wrapfigure}{r}{0pt}
+\centering
+\includestandalone{figs/triangulo}
+\caption{Um triângulo esférico}
+\label{fig:triangulo}
+\end{wrapfigure}
+
+Aqui, vamos fazer a demonstração das equações \ref{tri1} a \ref{tri3}, seguindo o livro do Boczko. Na Fig.~\ref{fig:triangulo} está desenhado um triângulo esférico de lados $a$, $b$ e $c$, e de ângulos internos são $A$, $B$ e $C$. Os pontos $A$, $B$ e $C$ estão sobre a esfera e $O$ é a origem. Portanto os segmentos $OA=OB=OC$ são o raio, suposto unitário. Pelo ponto $A$ traça-se o segmento $AK$, que é tangente ao arco $\widearc{AB}$. Da mesma forma, o segmento $AL$ é tangente ao arco $\widearc{AC}$. Portanto são retos os ângulos $O\hat{A}K=O\hat{A}L$.
+
+Considerando o triângulo $LAK$, escrevemos a lei dos cossenos:
+%
+\begin{equation}
+KL^2 = KA^2 + LA^2 - 2~KA~LA~\cos A \label{LAK}
+\end{equation}
+%
+Analogamente, escrevemos a lei dos cossenos para o triângulo $LOK$, notando que o ângulo $L\hat{O}K$ é $a$:
+%
+\begin{equation}
+KL^2 = KO^2 + LO^2 - 2~KO~LO~\cos a \label{LOK}
+\end{equation}
+%
+Igualando as equações \ref{LAK} e \ref{LOK} e rearranjando, ficamos com:
+%
+\begin{eqnarray}
+KO^2 + LO^2 - 2~KO~LO~\cos a &=& KA^2 + LA^2 - 2~KA~LA~\cos A \\
+LO^2 - LA^2 + KO^2 - KA^2 &=& 2~KO~LO~\cos a - 2~KA~LA~\cos A
+\end{eqnarray}
+%
+Como o triângulo $LAO$ é reto em $A$:
+%
+\begin{equation}
+LO^2 - LA^2 = AO^2
+\end{equation}
+%
+Similarmente, como o triângulo $KAO$ é reto em $A$:
+%
+\begin{equation}
+KO^2 - KA^2 = AO^2
+\end{equation}
+%
+Substituindo e isolando $\cos a$:
+%
+\begin{eqnarray}
+AO^2 + AO^2 &=& 2~KO~LO~\cos a - 2~KA~LA~\cos A \\
+2~KO~LO~\cos a &=& 2 AO^2 + 2~KA~LA~\cos A \\
+\cos a &=& \frac{AO^2}{KO~LO} + \frac{KA~LA}{KO~LO}~\cos A
+\end{eqnarray}
+%
+Com o triângulo $LAO$, que é reto em $A$, obtemos o seno e o cosseno de $b$:
+%
+\begin{equation}
+\sin b = \frac{LA}{LO} \qquad \text{e} \qquad \cos b = \frac{AO}{LO}
+\end{equation}
+%
+Com o triângulo $KAO$, que é reto em $A$, obtemos o seno e o cosseno de $c$:
+%
+\begin{equation}
+\sin c = \frac{KA}{KO} \qquad \text{e} \qquad \cos c = \frac{AO}{KO}
+\end{equation}
+%
+Substuindo, chegamos na equação \ref{tri1}, como queríamos demonstrar:
+\[
+\cos a = \cos b \cos c + \sin b \sin c \cos A \qquad \blacksquare
+\]
+
+Com a permutação cíclica dos nomes das variáveis, é imediato escrever as outras duas equações:
+\begin{eqnarray}
+\cos b &=& \cos a \cos c + \sin a \sin c \cos B \label{cosb} \\
+\cos c &=& \cos a \cos b + \sin a \sin b \cos C \label{cosc}
+\end{eqnarray}
+%
+Agora é preciso rearranjar os termos da equação \ref{tri1} e elevar ao quadrado:
+\begin{eqnarray}
+-\cos A \sin b \sin c &=&  \cos b \cos c - \cos a \\
+\cos^2 A \sin^2 b \sin^2 c &=&  \cos^2 b \cos^2 c - 2 \cos a \cos b \cos c + \cos^2 a \label{cos2A}
+\end{eqnarray}
+%
+Fazendo o mesmo procedimento com a equação \ref{cosc}:
+\begin{eqnarray}
+-\cos B \sin a \sin c &=&  \cos a \cos c - \cos b \\
+\cos^2 B \sin^2 a \sin^2 c &=&  \cos^2 a \cos^2 c - 2 \cos a \cos b \cos c + \cos^2 b \label{cos2B}
+\end{eqnarray}
+%
+Agora, na equação \ref{cos2A}, é preciso substituir todos os cossenos quadrados por $\cos^2 x = 1 - \sin^2 x$:
+%
+\begin{eqnarray}
+(1 - \sin^2 A) \sin^2 b \sin^2 c &=&  (1-\sin^2 b) (1-\sin^2 c) + \\ && - 2 \cos a \cos b \cos c + 1 - \sin^2 a \\
+\sin^2 b \sin^2 c - \sin^2 A \sin^2 b \sin^2 c &=& 1-\sin^2 c - \sin^2 b + \sin^2 b \sin^2 c + \\ && - 2 \cos a \cos b \cos c + 1 - \sin^2 a \\
+\sin^2 b \sin^2 c - \sin^2 A \sin^2 b \sin^2 c - \sin^2 a &=& 2 + 2 \cos a \cos b \cos c \label{abcA}
+\end{eqnarray}
+%
+Da mesma forma, na equação \ref{cos2B}, substituir todos os $\cos^2 x = 1 - \sin^2 x$:
+%
+\begin{eqnarray}
+(1 - \sin^2 B) \sin^2 a \sin^2 c &=&  (1-\sin^2 a) (1-\sin^2 c) + \\ && - 2 \cos a \cos b \cos c + 1 - \sin^2 b \\
+\sin^2 a \sin^2 c - \sin^2 B \sin^2 a \sin^2 c &=& 1-\sin^2 c - \sin^2 a + \sin^2 a \sin^2 c + \\ && - 2 \cos a \cos b \cos c + 1 - \sin^2 b \\
+\sin^2 a \sin^2 c - \sin^2 B \sin^2 a \sin^2 c - \sin^2 b &=& 2 + 2 \cos a \cos b \cos c \label{abcB}
+\end{eqnarray}
+%
+Como nas equações \ref{abcA} e \ref{abcB} os termos da direita são os mesmos, podemos igualá-las:
+%
+\begin{eqnarray}
+2 + 2 \cos a \cos b \cos c &=& 2 + 2 \cos a \cos b \cos c  \\
+\sin^2 b \sin^2 c - \sin^2 A \sin^2 b \sin^2 c - \sin^2 a &=& \sin^2 a \sin^2 c - \sin^2 B \sin^2 a \sin^2 c - \sin^2 b \phantom{2em} \\
+\sin^2 A \sin^2 b \sin^2 c &=& \sin^2 B \sin^2 a \sin^2 c \\
+\sin^2 A \sin^2 b &=& \sin^2 B \sin^2 a \\
+\frac{\sin^2 A}{\sin^2 a} &=& \frac{\sin^2 B}{\sin^2 b} \\
+\frac{\sin A}{\sin a} &=& \frac{\sin B}{\sin b}
+\end{eqnarray}
+%
+que é a equação \ref{tri2} que queríamos demonstrar. $\blacksquare$
+
+Para concluir as demonstrações, vamos isolar $\cos a$ na equação \ref{tri1} e substituir na equação \ref{cosb}:
+%
+\begin{eqnarray}
+\cos b &=& (\cos b \cos c + \sin b \sin c \cos A) \cos c + \sin a \sin c \cos B \\
+\cos b &=& \cos b \cos^2 c + \sin b \sin c \cos A \cos c + \sin a \sin c \cos B \\
+\cos b &=& \cos b (1-\sin^2 c) + \sin b \sin c \cos A \cos c + \sin a \sin c \cos B \\
+\cos b &=& \cos b - \cos b \sin^2 c + \sin b \sin c \cos A \cos c + \sin a \sin c \cos B \\
+0 &=& - \cos b \sin^2 c + \sin b \sin c \cos A \cos c + \sin a \sin c \cos B
+\end{eqnarray}
+%
+Dividindo tudo por $\sin c$ resulta:
+\begin{eqnarray}
+0 &=& - \cos b \sin c + \sin b \cos A \cos c + \sin a \cos B \\
+\sin a \cos B &=& \cos b \sin c - \sin b \cos c \cos A
+\end{eqnarray}
+que é a equação \ref{tri3} que queríamos demonstrar. $\blacksquare$
+
+\newpage
+
+\section{De coordenadas horárias para horizontais}
+
+Digamos que esteja-se partindo inicialmente de coordenadas equatoriais ($\alpha, \delta$). Para passar de $\alpha$ para $H$, basta usar o tempo sideral, como visto no capítulo anterior:
+%
+\[
+ H = TS - \alpha
+\]
+%
+Agora estamos no sistema horário e desejamos passar para o sistema horizontal. Para isso, é necessário conhecer a latitude geográfica $\varphi$ do observador. Esquematicamente, dados ($H, \delta$), obter ($z, A$):
+%
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \text{ângulo horário}~H\\
+& \text{declinação}~\delta
+\end{aligned}
+\right.
+\qquad \xrightarrow[\hspace{2cm}]{\varphi} \qquad
+\left\{
+\begin{aligned}
+& \text{distância zenital}~z\\
+& \text{azimute}~A
+\end{aligned}
+\right.
+\end{equation*}
+
+Para isso, precisamos desenhar na esfera celeste todos os ângulos em questão, para identificar um triângulo esférico semelhante ao da Fig.~\ref{fig:trianguloabc}. Esse desenho está apresentado na Fig.~\ref{fig:relacao}. Na esfera celeste, repare no triângulo esférico constituído pelos 3 vértices: zênite, pólo Norte celeste e estrela. Lá estão marcados os ângulos que correspondem às coordenadas horizontais e coordenadas horárias, bem como a latitude geográfica.
+
+Vale a pena nos determos para verificar cada elemento da Fig.~\ref{fig:relacao}. Consideremos os lados do triângulo: do pólo Norte ao zênite, temos o complemento da latitude; da estrela ao pólo Norte, temos o complemento da declinação; do zênite à estrela, temos a distância zenital. Consideremos agora dois dos ângulos. Estando no vértice pólo Norte, a abertura entre o meridiano local e o círculo horário que passa pela estrela é o ângulo horário (crescendo para o oeste). Estando no zênite, a abertura entre o Norte e o meridiano que passa pela estrela é o replemento do azimute (já que o azimute cresce para Leste, o azimute seria o ângulo externo do vértice zênite).
+
+No topo da Fig.~\ref{fig:relacao}, o triângulo esférico em questão está passado a limpo para facilitar a visualização. Ele deve ser comparado com o triângulo da Fig.~\ref{fig:trianguloabc}. Dessa comparação, fica clara a equivalência dos lados e ângulos:
+%
+\begin{equation} \label{equivalencia}
+\left\{
+\begin{aligned}
+a &=& z \\
+b &=& 90^{\circ} - \delta \\
+c &=& 90^{\circ} - \varphi
+\end{aligned}
+\right.
+\qquad \text{e} \qquad
+\left\{
+\begin{aligned}
+A' &=& H \\
+B  &=& 360^{\circ} - A
+\end{aligned}
+\right.
+\end{equation}
+%
+Como cuidado de notação, repare que aqui o lado do triângulo genérico foi chamado de $A'$ para evitar confusão com $A$, que é o azimute.
+
+Agora, basta substituir as equivalências das equações~\ref{equivalencia} nas equações~\ref{tri1} a \ref{tri3}
+
+\begin{figure}
+\centering
+\includestandalone{figs/relacao2}
+\includestandalone{figs/relacao1}
+\caption{Relação entre coordenadas horárias e horizontais.}
+\label{fig:relacao}
+\end{figure}
+
+\newpage
+
+Finalmente, a transformação de ($H, \delta$) para ($z, A$) resulta ser:\\
+
+\noindent\fbox{\parbox{\textwidth}{
+\begin{eqnarray}
+\cos z &=& \sin \varphi  \sin \delta  + \cos \varphi  \cos \delta  \cos H \label{conv1} \\
+\sin z \cos A &=& \cos \varphi \sin \delta - \sin \varphi \cos \delta \cos H \label{conv2} \\
+\sin z \sin A &=& -\sin H \cos \delta \label{conv3}
+\end{eqnarray}}}
+~\\
+
+\noindent Se for desejada a altura $h$, ao invés da distância zenital, a conversão é trivial, como visto anteriormente:
+%
+\[
+ h = 90^{\circ} - z
+\]
+%
+Pode parecer desnecessário ter 3 equações para isolar 2 incógnitas. Ocorre que conhecer $\cos A$ (equação \ref{conv2}) não é suficiente para saber em qual quadrante está o ângulo $A$. A equação \ref{conv3} é necessária para descobrir o sinal de $\sin A$ e determinar o quadrante de $A$ sem ambigüidade.
+
+Em última análise, agora sabemos calcular a altura e azimute de qualquer estrela, partindo da ascensão reta e da declinação. É preciso saber a latitude geográfica e a data e horário da observação.
+
+\begin{exemplo}{9}
+\textit{Uma estrela tem ascensão reta $\alpha = 4^{\rm h}$ e declinação $\delta = 20^{\circ}$. Se a observação for feita num local de latitude $\varphi = -30^{\circ}$ e no tempo sideral $TS = 7\,{\rm h}$, qual será a altura~$h$ e o azimute $A$?}\\
+
+Resposta: Primeiro, usamos $TS$ e $\alpha$ para calcular $H$:
+%
+\begin{eqnarray*}
+TS &=& H + \alpha \\
+H &=& TS - \alpha \\
+H &=& 7 - 4 \\
+H &=& 3\,{\rm h} \\
+H &=& 3 \times 15 \\
+H &=& 45^{\circ} \\
+\end{eqnarray*}
+
+Com a equação \ref{conv1}, isolamos $z$:
+%
+\begin{eqnarray*}
+\cos z &=& \sin \varphi  \sin \delta  + \cos \varphi  \cos \delta  \cos H \\
+\cos z &=& \sin(-30^{\circ})  \sin(20^{\circ})  + \cos(-30^{\circ})  \cos(20^{\circ})  \cos(45^{\circ}) \\
+\cos z &=& 0.4044 \\
+z &=& \arccos(0.4044) \\
+z &=& 66.1445^{\circ} \\
+z &=& 66^{\circ}\,08'\,40''
+\end{eqnarray*}
+
+
+A altura é
+\begin{eqnarray*}
+h &=& 90^{\circ} - z \\
+h &=& 23^{\circ}\,51'\,20''
+\end{eqnarray*}
+
+Com a equação \ref{conv2}, calculamos $\cos A$:
+%
+\begin{eqnarray*}
+\sin z \cos A &=& \cos \varphi \sin \delta - \sin \varphi \cos \delta \cos H \\
+\cos A &=& \frac{\cos \varphi \sin \delta - \sin \varphi \cos \delta \cos H}{\sin z} \\
+\cos A &=& \frac{\cos(-30^{\circ}) \sin(20^{\circ}) - \sin(-30^{\circ}) \cos(20^{\circ}) \cos(45^{\circ})}{\sin(66.1445^{\circ})} \\
+\cos A &=&  0.6871 \\
+\bar{A} &=& 46.5964 \\
+\bar{A} &=& 46^{\circ}\,35'\,47''
+\end{eqnarray*}
+
+$\bar{A}$ é um valor preliminar, pois $A$ de fato pode estar no primeiro quadrante ou no quarto quadrante. Isto é:
+%
+\begin{eqnarray*}
+\text{Se~} \sin A > 0 &:& A = \bar{A} \\
+\text{Se~} \sin A < 0 &:& A = 360^{\circ} - \bar{A}
+\end{eqnarray*}
+
+Com a equação \ref{conv3}, calculamos o sinal de  $\sin A$:
+%
+\begin{eqnarray*} 
+\sin z \sin A &=& -\sin H \cos \delta \\
+\sin A &=& -\frac{\sin H \cos \delta}{\sin z}\\
+\sin A &=& -\frac{\sin(45^{\circ}) \cos(20^{\circ})}{\sin(66.1445^{\circ})}\\
+\sin A &<& 0
+\end{eqnarray*} 
+%
+Portanto,
+\begin{eqnarray*} 
+A &=& 360^{\circ} - \bar{A} \\
+A &=& 360^{\circ} - 46.5964 \\
+A &=& 313.4036^{\circ} \\
+A &=& 313^{\circ}\,24'\,13''
+\end{eqnarray*} 
+
+\end{exemplo}
+
+
+\section{De coordenadas horizontais para horárias}
+
+Seria possível aplicar um procedimento análogo para obter a transformação inversa, isto é, dados ($z, A$), obter ($H, \delta$):
+%
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \text{distância zenital}~z\\
+& \text{azimute}~A
+\end{aligned}
+\right.
+\qquad \xrightarrow[\hspace{2cm}]{\varphi} \qquad
+\left\{
+\begin{aligned}
+& \text{ângulo horário}~H\\
+& \text{declinação}~\delta
+\end{aligned}
+\right.
+\end{equation*}
+%
+Sem escrever os passos intermediários, apresentamos as equações que transformam do sistema horizontal para o sistema horário. 
+%
+\begin{eqnarray}
+\sin \delta &=& \cos z \sin \varphi + \sin z \cos \varphi \cos A \label{inv1} \\
+\cos \delta \cos H &=& \cos z \cos \varphi - \sin z \sin \varphi \cos A \label{inv2} \\
+\sin H \cos \delta &=& -\sin z \sin A \label{inv3}
+\end{eqnarray}
+%
+Naturalmente, o $H$ ao final pode ser convertido para $\alpha$, se soubermos o $TS$.

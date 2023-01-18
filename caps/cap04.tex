@@ -1,0 +1,279 @@
+\chapter{Sistemas de coordenadas}
+
+Neste capítulo, vamos introduzir os sistemas de coordenadas necessários para este curso. Discutiremos o conceito de tempo sideral detalhadamente.
+
+\section{Coordenadas horizontais}
+
+\begin{wrapfigure}[20]{r}{0pt}
+\includestandalone{figs/planovertical}
+\caption{Plano vertical de um astro.}
+\label{fig:planovertical}
+\end{wrapfigure}
+
+O sistema de coordenadas horizontais tem esse nome pois o plano de referência é o horizonte do observador. São também chamadas de coordenadas altazimutais, pois os nomes das coordenadas são altura e azimute, definidos a seguir.
+
+O plano vertical de um astro (Fig.~\ref{fig:planovertical}) é um plano perpendicular ao horizonte e que passa pelo zênite e pelo astro. Isso nos permite definir a primeira coordenada, que é a altura (Fig.~\ref{fig:coord-horizontais}).
+ 
+\textbf{Altura} ($h$) é o ângulo desde o horizonte até o astro, medido ao longo do seu plano vertical. Alturas estão definidas no intervalo:
+%
+\begin{equation}
+-90^{\circ} \leqslant h \leqslant +90^{\circ}.
+\end{equation}
+%
+A altura do horizonte é $h=0^{\circ}$ e a altura do zênite é $h=90^{\circ}$. Alturas negativas significam que o astro está abaixo do horizonte. Alternativamente, podemos utilizar o complemento da altura, que é a distância zenital.
+
+\newpage
+
+\begin{wrapfigure}[22]{R}{0pt}
+\includestandalone{figs/coord-horizontais}
+\caption{Coordenadas horizontais: altura ($h$) e azimute ($A$).}
+\label{fig:coord-horizontais}
+\end{wrapfigure}
+
+\textbf{Distância zenital} ($z$) é o ângulo desde o zênite até o astro, medido ao longo do seu plano vertical. A relação entre altura e zênite é simplesmente:
+%
+\begin{equation}
+h + z  =  90^{\circ}.
+\end{equation}
+%
+Portanto, a distância zenital varia no intervalo:
+%
+\begin{equation}
+0^{\circ} \leqslant z \leqslant 180^{\circ},
+\end{equation}
+%
+sendo que astros abaixo do horizonte têm distância zenital maior que $90^{\circ}$.
+
+A segunda coordenada do sistema horizontal é chamada de azimute. \textbf{Azimute} ($A$) é o ângulo entre o ponto cardeal Norte e o vertical do astro, medido sobre o plano do horizonte, de Norte para Leste. O azimute está definido no intervalo:
+%
+\begin{equation}
+0^{\circ} \leqslant A \leqslant 360^{\circ}.
+\end{equation}
+%
+Nessa definição, os pontos cardeais têm os seguintes azimutes: $A=0^{\circ}$ (Norte), $A=90^{\circ}$ (Leste), $A=180^{\circ}$ (Sul) e $A=270^{\circ}$ (Oeste). Essa convenção não é única, sendo possível encontrar referências que adotam outras convenções do sentido de contagem do azimute, então convém reparar com atenção em cada caso.
+
+Resumindo, há duas possibilidades para expressar as coordenadas do sistema horizontal:
+
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \text{altura}~h\\
+& \text{azimute}~A
+\end{aligned}
+\right.
+\qquad {\rm ou} \qquad
+\left\{
+\begin{aligned}
+& \text{distância zenital}~z\\
+& \text{azimute}~A
+\end{aligned}
+\right.
+\end{equation*}
+
+As coordenadas equatoriais são \textit{locais}, isto é, dependem da latitude do observador. Mais do que isso, $A$ e $z$ de uma dada estrela variam o tempo todo, conforme a esfera celeste gira ao redor do observador.
+
+\section{Coordenadas equatoriais}
+
+No sistema de coordenadas equatoriais, as coordenadas de uma dada estrela são essencialmente `fixas', se ignorarmos efeitos de longo prazo como a precessão e outras pequenas perturbações. O sistema equatorial tem esse nome pois o plano de referência é o equador celeste. Os dois ângulos do sistema equatorial são chamados de ascensão reta e declinação, definidos a seguir (Fig.~\ref{fig:coord-equatoriais}).
+
+\newpage
+
+\begin{wrapfigure}[20]{r}{0pt}
+\includestandalone{figs/coord-equatoriais}
+\caption{Coordenadas equatoriais: ascensão reta ($\alpha$) e declinação ($\delta$).}
+\label{fig:coord-equatoriais}
+\end{wrapfigure}
+
+\textbf{Declinação} ($\delta$) é o ângulo desde o equador até a estrela, medido sobre o meridiano que passa pela estrela. A declinação está definida no intervalo:
+%
+\begin{equation}
+-90^{\circ} \leqslant \delta \leqslant +90^{\circ},
+\end{equation}
+%
+sendo positiva no hemisfércio Norte e negativa no hemisfério Sul. A declinação é uma coordenada análoga à latitude geográfica para pontos na superfície terrestre.
+
+Da mesma forma, precisaremos de uma coordenada análoga ao que seria a longitude geográfica. Para definir longitude geográfica, foi necessário escolher um meridiano de referência que sirva como o zero da contagem. Adotou-se como meridiano principal aquele que passa pelo observatório de Greenwich. Analogamente, nas coordenadas equatoriais adota-se como referência o meridiano que passa pelo Ponto Vernal. Assim podemos definir a ascensão reta.
+
+\textbf{Ascensão reta} ($\alpha$) é o ângulo medido sobre o equador celeste, desde o ponto \Aries\ até o meridiano que passa pela estrela. A ascensão reta cresce de Oeste para Leste, isto é, no sentido oposto ao do movimento da esfera celeste. Ou ainda: no sentido anti-horário, se a esfera celeste for vista a partir do pólo Norte. É o sentido da seta amarela na Fig.~\ref{fig:coord-equatoriais}. A ascensão reta é um ângulo que pode variar no intervalo
+%
+\begin{equation}
+0^{\circ} \leqslant \alpha \leqslant 360^{\circ},
+\end{equation}
+%
+É mais comum que a ascensão reta seja expressa não em graus, mas sim em \textit{horas}.\footnote{Entendendo que trata-se da unidade angular hora. Já que 24$^{\rm h}$ = 360$^{\circ}$, cada hora corresponde a 15$^{\circ}$. A hora angular também tem as subdivisões minutos e segundos. A notação usual é no formato: $12^{\rm h}\,34^{\rm m}\,56^{\rm s}$.} Nesse caso, o intervalo de variação da ascensão reta é:
+%
+\begin{equation}
+0^{\rm h} \leqslant \alpha \leqslant 24^{\rm h},
+\end{equation}
+%
+Resumindo, as coordenadas equatoriais são:
+%
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \text{ascensão reta}~\alpha\\
+& \text{declinação}~\delta
+\end{aligned}
+\right.
+\end{equation*}
+
+\newpage
+\section{Coordenadas horárias}
+
+No sistema equatorial, ambas as coordenadas ($\alpha, \delta$) são fixas. Vamos introduzir agora um outro sistema onde uma coordenada é fixa e a outra varia com o tempo. Pode parecer uma confusão desnecessária, mas a conveniência prática desse sistema ficará clara mais adiante. Trata-se do sistema equatorial horário, ou apenas sistema horário. No sistema horário, a declinação continua sendo a mesma. Já a ascensão reta será substituída por uma nova coordenada, chamada de ângulo horário.
+
+\begin{wrapfigure}{R}{0pt}
+\includestandalone{figs/coord-horarias}
+\caption{Coordenadas horarias: ângulo horário ($H$) e declinação ($\delta$).}
+\label{fig:coord-horarias}
+\end{wrapfigure}
+
+\textbf{Ângulo horário} ($H$) é o ângulo medido sobre o equador, desde o meridiano local até o meridiano que passa pela estrela. O ângulo horário poderia ser expresso em graus (de 0$^{\circ}$ a 360$^{\circ}$), mas como o nome já sugere, ele é mais comumente expresso em horas no intervalo:
+%
+\begin{equation}
+0^{\rm h} \leqslant H \leqslant 24^{\rm h},
+\end{equation}
+%
+O ângulo horário cresce no sentido de Leste para Oeste, ou seja, no mesmo sentido da rotação da esfera celeste. Em outras palavras, o valor de $H$ aumenta conforme o tempo passa. No momento em que uma estrela tem $H = 0^{\rm h}$, ela está cruzando o meridiano local --- é a chamada \textbf{passagem meridiana}. É também quando ela atinge a sua altura máxima --- a chamada culminação. Um certo tempo mais tarde, quando ela já estiver a $15^{\circ}$ a Oeste do meridiano local, seu ângulo horário será $H = 1^{\rm h}$, e assim por diante. Por isso, o ângulo horário funciona como uma espécie de medida da passagem do tempo.
+
+Resumindo, as coordenadas horárias são:
+%
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \text{ângulo horário}~H\\
+& \text{declinação}~\delta
+\end{aligned}
+\right.
+\end{equation*}
+
+A ascensão reta ($\alpha$) e o ângulo horário ($H$) estão conectados entre si através de uma grandeza chamada tempo sideral, que será definida a seguir.
+
+\newpage
+\section{Dia sideral}
+
+Nosso objetivo aqui é entender como calcular o tempo sideral em um momento qualquer do ano. Mas, antes disso, vamos apresentar brevemente o conceito de dia sideral. Do ponto de vista físico, podemos pensar na Terra como uma esfera em rotação. Ela tem uma dada velocidade angular e portanto um período, que nada mais é do que o tempo que a Terra leva para dar uma volta completa ao redor de seu eixo. Esse intervalo de tempo é o \textbf{dia sideral}, que dura aproximadamente 23 horas e 56 minutos. A esfera celeste aparenta girar ao nosso redor com esse período. Cada estrela (e em particular o ponto \Aries) leva 23\,h\,56\,min para retornar à mesma posição na esfera celeste. É isso que o céu faz, continuamente.
+
+O que complica as coisas é o Sol e a nossa contagem de tempo atrelada a ele. Ocorre que, ao mesmo tempo em que a Terra dá uma volta ao redor de seu próprio eixo, ela também avança um pouco ao longo da sua órbita ao redor do Sol. O sentido da rotação é o mesmo da translação. Compare o comportamento de uma estrela com o comportamento do Sol. Uma estrela cruza o meridiano local; 23\,h\,56\,min depois, ela cruza o meridiano local novamente. Já o Sol demora um pouco mais: o Sol cruza o meridiano local; 23\,h\,56\,min depois, ele ainda não retornou ao meridiano local. Como a Terra avançou, o Sol ficou um pouco `para trás', e são necessários 4 minutos adicionais para que ele volte a se alinhar com o meridiano local. Esse é o \textbf{dia solar}: é o intervalo de tempo entre duas passagens do Sol pelo meridiano local. O dial solar dura 24 horas. De fato, é esse o intervalo de tempo que decidimos dividir em 24 partes iguais chamadas de `horas'. São essas as horas comuns do tempo civil, isto é, o horário usado nos relógios da vida cotidiana. Por outro lado, se o dia sideral fosse dividido em 24 partes iguais, teríamos as horas siderais.
+
+Considere agora como o céu noturno se comporta com relação ao horário de relógios comuns. Digamos que uma dada estrela cruze o meridiano local hoje à noite às 21\,h\,30\,min, por exemplo. Amanhã à noite, ela cruzará o meridiano local 4 minutos mais cedo, às 21\,h\,26\,min. Depois de amanhã, às 21\,h\,22\,min, e assim por diante.
+
+Pensando de outra forma, imagine observar o céu todas as noites depois do pôr do Sol, num dado horário fixo, por exemplo às 20\,h. Digamos que hoje à noite seja possível ver, acima do horizonte Oeste, a constelação de Áries às 20\,h. Conforme a noite passa, o céu gira e essa constelação se põe, naturalmente. Na noite seguinte, no horário fixo 20\,h, o céu inteiro já estará um pouquinho deslocado para o Oeste. Afinal, as estrelas tinham retornado às mesmas posições já às 19\,h\,56\,min e nesses 4 minutos, avançaram mais um pouco rumo ao Oeste. Como o céu gira 360$^{\circ}$ em 23\,h\,56\,min, em 4 minutos o avanço angular é de aproximadamente 1$^{\circ}$. Ou seja, a cada noite no mesmo horário, o céu já está ${\sim}1^{\circ}$ mais para o Oeste que na noite anterior. Depois de 1 mês (${\sim}30^{\circ}$) a constelação de Áries já estará inteiramente abaixo do horizonte, e será a constelação de Touro que veremos acima do horizonte Oeste depois do pôr do Sol. No mês seguinte, será a vez de Gêmeos, e assim por diante, retornando a Áries depois de 12 meses. É por isso que, mesmo estando em uma latidide fixa, as constelações visíveis no céu noturno mudam ao longo dos meses. O céu funciona como um calendário.
+% Os povos da antigüidade tinham familiaridade com diversos fenômenos cíclicos da natureza, como migrações de animais, mudança da vegetação, ciclos de chuvas, cheias dos rios etc. Os ciclos biológicos e climáticos podem ser periódicos em média, mas com alguma variação. Nenhum deles era tão perfeitamente confiável quanto a repetição anual dos movimentos dos astros.
+
+\section{Tempo sideral}
+\label{sec:ts}
+
+Voltando às coordenadas horárias, precisamos saber converter de ascensão reta ($\alpha$) para ângulo horário ($H$) e vice-versa. Esses dois ângulos estão conectados entre si através do Tempo Sideral.
+
+\textbf{Tempo sideral} ($TS$) é o ângulo horário do ponto \Aries. Na Fig.~\ref{fig:coord-horarias}, é possível constatar que o ângulo horário do ponto \Aries\ é a soma:
+%
+\begin{equation}
+TS = H + \alpha.
+\end{equation}
+%
+Ou, dito de outra forma, para transformar entre as coordenadas $\alpha$ e $H$, é necessário conhecer o $TS$ da observação.
+
+O ponto \Aries\ naturalmente gira com a esfera celeste como um todo, então ao longo das horas, seu ângulo horário estará variando. Portanto, o $TS$ depende do horário. Mas, por causa dos movimentos descritos na seção anterior, também há uma variação ao longo do ano. A seguir, vamos apresentar uma maneira de \textit{estimar aproximadamente} o $TS$ de qualquer data. Não se trata de um cálculo exato, mas serve para esclarecer alguns conceitos.
+
+Vamos antes relembrar a noção de fuso horário, que vale para o tempo civil. O tempo civil de Greenwich era historicamente chamado de GMT (Greenwich Mean Time), mas a nomenclatura atual é Tempo Universal (sigla UT). Na sigla UTC, freqüentemente usada, o C é de Coordenado; a correção de tempo atômico não vem ao caso. Para passar de tempo universal para o tempo de um dado fuso, basta somar ou subtrair 1 hora inteira a cada $15^{\circ}$ de longitude. Por exemplo, se são 12\,h em Greenwich, são 11\,h para alguém que esteja na longitude $-15^{\circ}$ (Oeste), e são 13\,h para alguém que esteja na longitude $+15^{\circ}$ (Leste). Cada fuso horário teria idealmente a mesma largura de $15^{\circ}$ e todos naquele intervalo adotariam a hora civil do centro do fuso. Na prática, os fusos são arbitrariamente irregulares, para seguir fronteiras de países etc. Nós estamos a Oeste de Greenwich. A hora legal de Brasília é UTC$-3$. Quando são 12\,h em Greenwich, são 9\,h em Brasília.
+
+Quando se trata de tempo sideral, não podemos usar horas inteiras dos fusos. Precisamos da variação contínua das longitudes. A relação entre o TS de um local e o TS de Greenwich é:
+%
+\begin{equation}\label{TSlocal}
+TS_{\rm local} = TS_{\rm Greenwich} + \text{longitude},
+\end{equation}
+%
+sendo a longitude negativa para o Oeste. Por exemplo, a longitude de Curitiba é:
+%
+\[
+-49^{\circ} \, 16' \, 15'' = -49.27^{\circ}
+\]
+ou expressa em horas (dividir por 15):
+\[
+-3\,{\rm h}\,17{\rm min}\,5{\rm s} = -3.285\,{\rm h}
+\]
+%
+Então a informação da longitude exata do local (não meramente o fuso) é necessária para o cálculo do $TS$ local. Agora falta entender de onde vem o cálculo do $TS$ de Greenwich.
+
+Lembramos que tempo sideral ($TS$) é o ângulo horário ($H$) do ponto \Aries. E ângulo horário é o ângulo entre o astro e o meridiano local. Precisamos enxergar onde está o ponto \Aries\ em cada momento. O Sol está no ponto \Aries\ no início da primavera do hemisfério Norte (21 de março). Então, ao meio-dia verdadeiro de 21 de março, um observador em Greenwich verá o Sol cruzar o meridiano local. Nesse momento, o ponto \Aries\ terá ângulo horário $H=0^{\rm h}$.
+
+\begin{exemplo}{0}
+\textit{Qual o tempo sideral em Greenwich ao meio-dia de 21 de março?}\\
+
+Resposta: $TS = 0$\,h. No equinócio de primavera boreal, o Sol está no ponto \Aries. Ao meio-dia, o ângulo horário do ponto \Aries\ é zero, portanto o tempo sideral é zero.
+\end{exemplo}
+
+\begin{exemplo}{1}
+\textit{Qual o tempo sideral em Greenwich às 18\,h\,30\,min de 21 de março?}\\
+
+Resposta: $TS = 6$\,h\,30\,min. São 6.5\,h depois do tempo sideral zero.
+\end{exemplo}
+
+\begin{exemplo}{2}
+\textit{Qual o tempo sideral em Greenwich às 8\,h de 21 de março?}\\
+
+Resposta: $TS = 20$\,h. São 4\,h antes do tempo sideral zero (TS varia entre 0\,h e 24\,h).
+\end{exemplo}
+
+Essas estimativas aproximadas de $TS$ no dia do equinócio são toleráveis dentro de um certo erro. Elas não são exatas, entre outros motivos, pois estamos misturando tempo solar com tempo civil, sem levar em conta a Equação do Tempo. Mas o propósito, no momento, é elucidar o funcionamento do $TS$, mesmo que o valor numérico da estimativa não seja tão acurado.
+
+Vejamos agora como o ponto \Aries\ se comporta ao longo dos dias do ano. O ponto \Aries\ (do meio-dia) percorrerá um ângulo de 360$^{\circ}$ (ou 24$^{\rm h}$) ao longo do ano (cerca de 365 dias). Na prática, o $TS$ do meio-dia avança aproximadamente 2\,h por mês. \\
+
+\begin{exemplo}{3}
+\textit{Qual o tempo sideral em Greenwich ao meio-dia de 20 de abril?}\\
+
+Resposta: $TS = 2$\,h. Um mês depois do equinócio, o $TS$ do meio-dia terá avançado 2 horas.
+\end{exemplo}
+
+\begin{exemplo}{5}
+\textit{Qual o tempo sideral em Greenwich às 13\,h de 20 de abril?}\\
+
+Resposta: $TS = 3$\,h. Uma hora depois do exemplo anterior.
+\end{exemplo}
+
+No caso geral, é necessário contar o número de dias desde o equinócio de março (de meio-dia a meio-dia). Em seguida, somar ou subtrair as horas para além ou para antes do meio-dia.\\
+
+
+
+\begin{exemplo}{6}
+\textit{Qual o tempo sideral em Greenwich ao meio-dia de 2 de junho?}\\
+
+Resposta: $TS = 4$\,h\,48\,min. De 21 de março até 2 de junho, passaram-se 73 dias. Com um avanço na taxa de 24\,h/365\,dias = 0.0657 h/dia, tivemos cerca de 4.8\,h = 4\,h\,48\,min.
+\end{exemplo}
+
+\begin{exemplo}{7}
+\textit{Qual o tempo sideral em Greenwich às 10\,h\,30\,min de 2 de junho?}\\
+
+Resposta: $TS = 3$\,h\,18\,min. Uma hora e meia antes do exemplo anterior.
+\end{exemplo}
+
+Todos esses exemplos diziam respeito ao $TS$ de Greenwich. Para passar para o $TS$ de um local qualquer, basta somar a longitude (equação~\ref{TSlocal}).\\
+
+\begin{exemplo}{10ago}
+\textit{Qual o tempo sideral em Curitiba às 20\,h\,30\,min de 10 de agosto?}\\
+
+Resposta:\\
+
+Primeiro calcularemos o tempo sideral em Greenwich. Às 20\,h\,30\,min no fuso de Brasília são 23\,h\,30\,min em UT.\\
+
+Em 10 de agosto, já se passaram 142 dias desde 21 de março. Portanto
+\[
+142\,\text{dias} \times \frac{24\,{\rm h}}{365\,{\rm dias}} = 9.34\,{\rm h} \simeq 9\,{\rm h}\,20\,{\rm min}  
+\]
+No meio-dia de 10 de agosto em Greenwich, $TS=9$\,h\,20\,min. Onze horas e meia mais tarde, $TS=20$\,h\,50\,min.\\
+
+Finalmente, para passar para o $TS$ de Curitiba, somar a longitude:
+\begin{eqnarray*}
+TS_{\rm local} &=& TS_{\rm Greenwich} + \text{longitude}\\
+TS_{\rm local} &=& 20\,{\rm h}\,50\,{\rm min} - 3\,{\rm h}\,17\,{\rm min} \\
+TS_{\rm local} &=&  17\,{\rm h}\,33\,{\rm min}
+\end{eqnarray*}
+
+\end{exemplo}
+
+Com isso, temos um procedimento aproximado que serve para compreender o conceito de tempo sideral e também serve para fazer uma estimativa, porém tendo em mente que os valores obtidos podem dar erros de até ${\sim}15$ minutos.
+
+Uma maneira de conferir a resposta correta é usando o Stellarium. É sempre possível escolher a localização, bem como data e horário. Clicando em alguma estrela, aparecem todos os dados; um deles é o tempo sideral.
+ 
+Outra maneira de conferir o cálculo do tempo sideral é através do link \url{https://aa.usno.navy.mil/data/siderealtime}.

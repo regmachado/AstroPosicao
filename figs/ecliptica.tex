@@ -1,0 +1,44 @@
+\documentclass[border=0mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{85}
+\begin{tikzpicture}[tdplot_main_coords, scale=3.0]
+
+% equador
+\draw[fill, purpleequator, opacity=0.75] (0,0,0) circle (1);
+\draw[decoration={text along path, text={Equador}, text color=mydarkpurple, text align={center}}, decorate] (0.75,0.5) to [bend right=14] (0.3,0.9);
+
+% zênite
+\node[] at (0,0,1.05) [above] {$PN$};
+\node[] at (0,0,-1.05) [below] {$PS$};
+
+% esfera celeste
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm); 
+
+\coordinate (O) at (0,0,0);
+\tdplotsetthetaplanecoords{0}
+\tdplotsetrotatedcoords{-90}{30}{0}
+\tdplotsetrotatedcoordsorigin{(O)}
+
+% eclíptica
+\draw[ultra thick, tdplot_rotated_coords, orange, opacity=0.75] (0,0,0) circle (1);
+\draw[tdplot_rotated_coords, decoration={text along path, text={Ecl{\'i}ptica}, text color=mydarkorange, text align={center}}, decorate] (0,-1.1) to [bend right=-14] (-1,-0.5);
+
+% sol
+\draw[fill=yellow, yellow, tdplot_rotated_coords] (0,1,0) circle (0.23mm) node[] {\sun};
+\draw[fill=yellow, yellow, tdplot_rotated_coords] (0,-1,0) circle (0.23mm) node[] {\sun};
+\draw[fill=yellow, yellow, tdplot_rotated_coords] (1,0,0) circle (0.23mm) node[] {\sun};
+\draw[fill=yellow, yellow, tdplot_rotated_coords] (-1,0,0) circle (0.23mm) node[] {\sun};
+
+% signos
+\draw[draw=none, black, tdplot_rotated_coords] (0,1,0) node[below] {\Aries};
+\draw[draw=none, black, tdplot_rotated_coords] (-1,0,0) node[right] {\Cancer};
+\draw[draw=none, black, tdplot_rotated_coords] (0,-1,0) node[above] {\Libra};
+\draw[draw=none, black, tdplot_rotated_coords] (1,0,0) node[left] {\Capricorn};
+ 
+\end{tikzpicture}
+ 
+\end{document}

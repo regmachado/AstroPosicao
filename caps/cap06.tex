@@ -1,0 +1,324 @@
+\chapter{Matrizes de rotação}
+
+Neste capítulo, vamos obter novamente as mesmas transformações do capítulo anterior (de horárias para horizontais), mas desta vez empregando matrizes de rotação para converter entre os dois sistemas.
+
+\section{Rotação dos eixos}
+
+\begin{wrapfigure}[14]{r}{0pt}
+\includestandalone{figs/roteixos}
+\caption{Rotação por um ângulo $\theta$ ao redor do eixo $z$.}
+\label{fig:roteixos}
+\end{wrapfigure}
+
+Começamos com o caso mais simples de uma única rotação ao redor do eixo $z$. Consideramos (como na Fig.~\ref{fig:roteixos}) um sistema de eixos $S$ onde um ponto $P$ tem as coordenadas cartesianas $(x, y)$. O sistema $S'$ é obtido a partir de uma rotação anti-horária por um ângulo $\theta$ ao redor do eixo $z$. Nesse sistema de eixos rotacionados, as coordenadas do mesmo ponto $P$ serão $(x', y')$. Na próxima seção, é apresentada uma simples demonstração geométrica da relação entre essas coordenadas. A relação entre as coordenadas resulta ser:
+%
+\begin{eqnarray}
+x' &=& \phantom{+} x \cos \theta + y \sin \theta \label{rot1}\\
+y' &=& -x \sin \theta + y \cos \theta \label{rot2}
+\end{eqnarray}
+
+\section*{Demonstração}
+
+Aqui vamos fazer uma rápida demostração geométrica das equações \ref{rot1} e \ref{rot2}. Para obter $x'$, a Fig.~\ref{fig:roteixosx} introduz um segmento $a$ e exibe dois triângulos separados para facilitar a visualização.
+%
+\begin{figure}[h]
+\centering
+\includestandalone{figs/roteixosx}\qquad
+\includestandalone{figs/roteixosx1}\qquad
+\includestandalone{figs/roteixosx2}
+\caption{Para obter $x'$.}
+\label{fig:roteixosx}
+\end{figure}
+
+\noindent Temos que:
+\begin{eqnarray*}
+\cos \theta &=& \frac{x'}{x+a} \\
+x' &=& x \cos \theta + a \cos \theta
+\end{eqnarray*}
+%
+Já que $\tan \theta = a / y$, resulta:
+\begin{eqnarray*}
+x' &=& x \cos \theta + y \tan \theta \cos \theta \\
+x' &=& x \cos \theta + y \sin \theta \\
+\end{eqnarray*}
+%
+Assim fica demonstrada a equação \ref{rot1}.
+
+Similarmente, para obter $y'$, a Fig.~\ref{fig:roteixosy} introduz outros segmentos $b$ e $c$ e também exibe triângulos separados para facilitar a visualização.
+%
+\begin{figure}
+\centering
+\includestandalone{figs/roteixosy}\qquad
+\includestandalone{figs/roteixosy1}\qquad
+\includestandalone{figs/roteixosy2}
+\caption{Para obter $y'$.}
+\label{fig:roteixosy}
+\end{figure}
+%
+Temos que $y = b+c$. Mas $\tan \theta = c/x$, e $\cos \theta = y'/b$. Substituindo $b$ e $c$ e isolando $y'$, resulta:
+\begin{eqnarray*}
+y &=& b+c \\
+y &=& \frac{y'}{\cos \theta} + x \tan \theta \\
+y \cos \theta &=& y' + x \tan \theta \cos \theta \\
+y \cos \theta &=& y' + x \sin \theta \\
+y' &=& -x \sin \theta + y \cos \theta
+\end{eqnarray*}
+%
+Assim fica demonstrada a equação \ref{rot2} $\blacksquare$.
+
+\vspace{1cm}
+
+Voltando agora para as transformações, vamos colocar as coordenadas na notação de vetores:
+%
+\begin{equation}
+\begin{bmatrix}
+x'\\
+y'
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos \theta & \sin \theta \\
+-\sin \theta & \cos \theta 
+\end{bmatrix}
+\begin{bmatrix}
+x\\
+y
+\end{bmatrix}
+\end{equation}
+%
+\noindent Dessa forma, a matriz $R_z(\theta)$:
+%
+\begin{equation}
+R_z(\theta) =
+\begin{bmatrix}
+\cos \theta & \sin \theta \\
+-\sin \theta & \cos \theta 
+\end{bmatrix}
+\end{equation}
+%
+é chamada de \textbf{matriz de rotação} ao redor do eixo $z$, por um ângulo $\theta$.
+
+Um esclarecimento importante: essa matriz serve para rotacionar \textit{o sistema de eixos} por um $\theta$ anti-horário. Note que o ponto $P$ é mantido fixo e são os eixos que rotacionam, passando do sistema $S$ para o sistema $S'$. Uma outra operação, diferente da que estamos tratando, seria a seguinte: mantendo fixo um único dado sistema de eixos, aplicar uma rotação por um $\theta$ anti-horário no vetor posição de $P$; ou seja, mudar $P$ de lugar. Nesse caso, o sinal de $\theta$ seria o oposto. Por isso, a matriz de rotação dessa outra operação tem os sinais dos senos trocados.
+
+No caso de uma rotação ao redor do eixo $z$, está claro que mudam as coordenadas $x$ e $y$, mas a coordenada $z$ permanece inalterada. O mesmo vale para rotações ao redor dos outros eixos, naturalmente. Por completeza, podemos escrever como seriam as matrizes de rotação ao redor de cada eixo, por um ângulo genérico $\theta$:
+%
+\begin{eqnarray}
+R_x(\theta) &=&
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos \theta & \sin \theta \\
+0 & -\sin \theta & \cos \theta
+\end{bmatrix} \\[1em]
+R_y(\theta) &=&
+\begin{bmatrix}
+\cos \theta & 0 & -\sin \theta \\
+0 & 1 & 0 \\
+\sin \theta & 0 & \cos \theta \\ 
+\end{bmatrix} \\[1em]
+R_z(\theta) &=&
+\begin{bmatrix}
+\cos \theta & \sin \theta & 0 \\
+-\sin \theta & \cos \theta & 0 \\ 
+0 & 0 & 1 
+\end{bmatrix}
+\end{eqnarray}
+%
+Observando $R_x(\theta)$, vemos que o papel que era desempenhado por $z$ no nosso exemplo original, é agora desempenhado por $x$. Da mesma forma, o papel que era desempenhado por $(x,y)$, é agora desempenhado por $(y,z)$ --- nessa ordem. Uma maneira de se convencer dos sinais em $R_y(\theta)$ é notar que a ordem precisaria ser $(z,x)$ para manter a mesma convenção. 
+
+É possível aplicar sucessivas rotações através de multiplicações de matrizes, mas lembrando que a ordem importa.
+
+\newpage
+\section{Coordenadas esféricas}
+
+\begin{wrapfigure}[20]{R}{0pt}
+\includestandalone{figs/esfericas}
+\caption{Coordenadas esféricas.}
+\label{fig:esfericas}
+\end{wrapfigure}
+%
+Para colocar nossas coordenadas angulares em vetores, precisaremos passá-las para coordenadas cartesianas. Por isso, antes de seguir adiante, vamos relembrar a relação entre coordenadas cartesianas e coordenadas esféricas. Conforme a Fig.~\ref{fig:esfericas}, um ponto $P$ está a uma distância $r$ da origem e seu vetor posição faz um ângulo polar $\theta$ com o eixo $z$. Portanto, a projeção de $r$ ao longo do eixo $z$ vale $r \cos \theta$. Já a projeção de $r$ no plano $xy$ vale $r \sin \theta$. Essa projeção no plano, por sua vez, projeta-se com o $\cos \phi$ no eixo $x$ e com o $\sin \phi$ no eixo $y$. Desse modo, resulta que a conexão entre as coordenadas esféricas $(r, \theta, \phi)$ com as coordenadas cartesianas $(x, y, z)$ é dada por:
+%
+\begin{eqnarray} 
+x &=& r \sin \theta \cos \phi \\
+y &=& r \sin \theta \sin \phi \\
+z &=& r \cos \theta 
+\end{eqnarray}
+%
+Colocando em termos de coordenadas de um vetor \textbf{V}:
+%
+\begin{equation}
+\textbf{V} = 
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix} = 
+\begin{bmatrix}
+r \sin \theta \cos \phi \\
+r \sin \theta \sin \phi \\
+r \cos \theta
+\end{bmatrix}
+\end{equation}
+
+
+\section{De coordenadas horárias para horizontais}
+
+A transformação de coordenadas horárias para horizontais pode ser compreendida em termos de rotações dos sistemas de eixos. Mas, para isso, precisamos entender cuidadosamente que eixos são esses.
+
+No caso das coordenadas horárias (esfera esquerda da Fig.~\ref{fig:eixosh}), o eixo $z$ corresponde ao eixo que passa pelo pólo Norte. Já o eixo $x$ precisa ser aquele a partir do qual se contam os ângulos da coordenada no plano. E os ângulos precisam crescer na direção de $x$ para $y$. Diante dessas exigências, concluímos que o eixo $x$ do sistema horário aponta na direção do meridiano local. Como o ângulo horário cresce com a passagem do tempo, o eixo $y$ é o que aponta para o Oeste. Isso faz com que o sistema de eixos seja sinistrógiro (que segue a regra da mão \textit{esquerda}).
+
+Já no caso das coordenadas horizontais, o eixo $z$ corresponde ao eixo que passa pelo zênite. O ângulo no plano, azimute, é contado de Norte para Leste, então essas serão as direções dos eixos $x$ e $y$, respectivamente. Na esfera direita da Fig.~\ref{fig:eixosh}, é possível constatar que também trata-se de um sistema sinistrógiro, embora virado para o outro lado.
+
+\begin{figure}
+\centering
+\includestandalone{figs/eixos-horarios}~
+\includestandalone{figs/eixos-horizontais}
+\caption{Eixos no sistema de coordenadas horárias (esquerda); e eixos no sistema de coordenadas horizontais (direita).}
+\label{fig:eixosh}
+\end{figure}
+
+Tendo entendido os eixos cartesianos, agora podemos colocar as coordenadas de ambos os sistemas em vetores. No caso das coordenadas horárias: o ângulo no plano é o ângulo horário; o ângulo polar é o complemento da declinação; o raio é simplesmente tomado como sendo unitário:
+%
+\begin{eqnarray}
+r &=& 1 \\
+\theta &=& H \\
+\phi &=& 90^{\circ} - \delta
+\end{eqnarray}
+%
+Portanto, as coordenadas cartesianas para o sistema horário ficam:
+%
+\begin{eqnarray}
+x &=& \sin(90^{\circ} - \delta) \cos H \\
+y &=& \sin(90^{\circ} - \delta) \sin H \\
+z &=& \cos(90^{\circ} - \delta)
+\end{eqnarray}
+%
+Colocando em um vetor:
+%
+\begin{equation}
+\textbf{V}_\text{hor\'arias} =
+\begin{bmatrix}
+\cos \delta \cos H \\
+\cos \delta \sin H \\
+\sin \delta
+\end{bmatrix}
+\end{equation}
+
+Já para as coordenadas horizontais: o ângulo no plano é o azimute; o ângulo polar é a distância zenital; o raio é novamente unitário:
+%
+\begin{eqnarray}
+r &=& 1 \\
+\theta &=& A \\
+\phi &=& z \text{\quad(este $z$ é distância zenital)}
+\end{eqnarray}
+%
+Portanto, as coordenadas cartesianas para o sistema horizontal ficam, já na notação de vetor:
+%
+\begin{equation}
+\textbf{V}_\text{horiz.} =
+\begin{bmatrix}
+\sin z \cos A \\
+\sin z \sin A \\
+\cos z
+\end{bmatrix}
+\end{equation}
+
+\begin{wrapfigure}{r}{0pt}
+\centering
+\includestandalone{figs/rot1}
+\includestandalone{figs/rot2}
+\includestandalone{figs/rot3}
+\caption{Rotações para alinhar os eixos da Fig.~\ref{fig:eixosh}.}
+\label{fig:rot}
+\end{wrapfigure}
+%
+Agora estamos em condição de aplicar as rotações necessárias para fazer os eixos na esfera esquerda da Fig.~\ref{fig:eixosh} se alinharem com os eixos da esfera direita. A seqüência de operações está ilustrada esquematicamente na Fig.~\ref{fig:rot}. Precisamos primeiro alinhar os eixos $z$ e depois girar $180^{\circ}$. Mais especificamente, a inclinação entre os dois eixos $z$ (Fig.~\ref{fig:eixosh}) vem a ser o ângulo entre o pólo Norte e o zênite. Como a altura do pólo é sempre a latitude, essa inclinação em questão é o complemento da latitude. Portanto, as rotações necessárias são, nessa ordem:
+%
+\begin{itemize}
+\item[(i)] Rotação de $90^{\circ} - \varphi$ ao redor do eixo $y$
+\item[(ii)] Rotação de $180^{\circ}$ ao redor do eixo $z$
+\end{itemize}
+%
+A primeira rotação será dada pela matrix $\textbf{R}_y(90^{\circ} - \varphi)$:
+%
+\begin{eqnarray}
+\textbf{R}_y(90^{\circ} - \varphi) &=& 
+\begin{bmatrix}
+\cos(90^{\circ} - \varphi) & 0 & -\sin(90^{\circ} - \varphi) \\
+0 & 1 & 0 \\
+\sin(90^{\circ} - \varphi) & 0 & \cos(90^{\circ} - \varphi) \\ 
+\end{bmatrix}\\
+\textbf{R}_y(90^{\circ} - \varphi) &=& 
+\begin{bmatrix}
+\sin \varphi & 0 & -\cos \varphi \\
+0 & 1 & 0 \\
+\cos \varphi & 0 & \sin \varphi \\ 
+\end{bmatrix}
+\end{eqnarray}
+
+Já a segunda rotação será $\textbf{R}_z(180^{\circ})$:
+%
+\begin{eqnarray}
+\textbf{R}_z(180^{\circ}) &=& 
+\begin{bmatrix}
+\cos 180^{\circ} & \sin 180^{\circ} & 0 \\
+-\sin 180^{\circ} & \cos 180^{\circ} & 0 \\ 
+0 & 0 & 1
+\end{bmatrix} \\
+\textbf{R}_z(180^{\circ}) &=& 
+\begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -1 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix} \\
+\end{eqnarray}
+
+Lembrando que as multiplicações de matrizes são feitas da direita para a esquerda, podemos escrever de maneira compacta:
+%
+\begin{equation}
+\textbf{V}_\text{horiz.} = \textbf{R}_z(180^{\circ}) ~ \textbf{R}_y(90^{\circ} - \varphi) ~ \textbf{V}_\text{hor\'arias}
+\end{equation}
+%
+Escrevendo explicitamente todos os elementos:
+%
+\begin{equation}
+\begin{bmatrix}
+\sin z \cos A \\
+\sin z \sin A \\
+\cos z
+\end{bmatrix} = 
+\begin{bmatrix}
+-1 & 0 & 0 \\
+0 & -1 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix} ~
+\begin{bmatrix}
+\sin \varphi & 0 & -\cos \varphi \\
+0 & 1 & 0 \\
+\cos \varphi & 0 & \sin \varphi \\ 
+\end{bmatrix} ~
+\begin{bmatrix}
+\cos \delta \cos H \\
+\cos \delta \sin H \\
+\sin \delta
+\end{bmatrix}
+\end{equation}
+
+Efetuando a multiplicação, o resultado é:
+%
+\begin{equation}
+\begin{bmatrix}
+\sin z \cos A \\
+\sin z \sin A \\
+\cos z
+\end{bmatrix} = 
+\begin{bmatrix}
+\cos \varphi \sin \delta - \sin \varphi \cos \delta \cos H \\
+-\cos \delta \sin H \\
+\cos \varphi \cos \delta \cos H + \sin \varphi \sin \delta
+\end{bmatrix}
+\end{equation}
+%
+Este é o mesmo resultado que tinha sido obtido nas equações \ref{conv1} a \ref{conv3} usando trigonometria esférica.
+
+Neste curso não vamos abordar todas as outras transformações. Seria possível, com procedimentos análogos, obter as transformações inversas, de coordenadas horizontais para horárias. Além disso, não vamos estudar aqui os outros sistemas, como coordenadas eclípticas ou galácticas. De qualquer modo, as transformações desses outros sistemas por meio de matrizes de rotação segue os mesmos princípios que foram ilustrados aqui.

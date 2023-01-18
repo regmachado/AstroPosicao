@@ -1,0 +1,42 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\tdplotsetmaincoords{70}{120}
+
+\pgfmathsetmacro{\thetavec}{45}
+\pgfmathsetmacro{\phivec}{62}
+\pgfmathsetmacro{\rvec}{1.2}
+
+\begin{tikzpicture}[scale=3,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+
+\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+
+%draw the main coordinate system axes
+\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=west]{$y$};
+\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+%draw a vector from origin to point (P) 
+\draw[thick, -,color=orange] (O) -- (P) node[black, midway, anchor=south] {$r$};
+
+%draw projection on xy plane, and a connecting line
+\draw[dashed, color=orange] (O) -- (Pxy);
+\draw[dashed, color=orange] (P) -- (Pxy);
+
+\draw[color=black, fill=black] (P) circle (0.1mm) node[anchor=south west] {$P$};
+
+\tdplotdrawarc{(O)}{0.2}{0}{\phivec}{anchor=north}{$\phi$}
+
+\tdplotsetthetaplanecoords{\phivec}
+
+%draw theta arc and label, using rotated coordinate system
+\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.25}{0}{\thetavec}{anchor=south,xshift=1mm}{$\theta$}
+
+\end{tikzpicture}
+
+\end{document}

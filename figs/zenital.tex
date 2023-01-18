@@ -1,0 +1,45 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\begin{tikzpicture}
+ 
+\def\h{2}
+\def\zen{50}
+\tikzmath{
+\s = \h * tan{\zen}; 
+}
+
+\coordinate (O) at (0,0) {};      %Origin
+\coordinate (G) at (0,\h) {};     %Gnomon
+\coordinate (Z) at (0,2.5*\h) {}; %Zenith
+\coordinate (U) at (-\s,0) {};    %shadow
+\coordinate (S) at (\s-0.2,2*\h-0.17) {}; %Sun
+
+% Angle: right angle
+\tkzMarkRightAngle[draw=black, size=0.2](U,O,G);
+
+% Angle: zenith distance
+\tkzMarkAngle[mark=none, draw=black, size=0.5](S,G,Z);
+\tkzLabelAngle[dist=0.7](S,G,Z){$z$};
+
+% Gnomon
+\draw[very thick, black] (O)--(G) node[midway, right] {$l$};
+
+% Zenith
+\draw[very thick, dashed, black] (O)--(Z) node[above] {$Z$};
+
+% Ground
+\draw[very thick, mygrass] (-2*\h,0)--(2*\h,0);
+
+% Sun
+\draw[very thick, orange] (U)--(S) node[above right] {\sun};
+
+% shadow
+\draw[very thick, black] (U)--(O) node[midway, below] {$s$};
+
+\end{tikzpicture}
+ 
+\end{document}

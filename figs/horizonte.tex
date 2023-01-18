@@ -1,0 +1,30 @@
+\documentclass[tikz, border={-3 0 0 0}]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+% 3D projection
+\tdplotsetmaincoords{70}{100} 
+
+\begin{tikzpicture}[tdplot_main_coords, scale=3.0]
+ 
+% horizon
+\tdplotsetrotatedcoords{0}{0}{0};
+\draw[fill, tdplot_rotated_coords, greenhorizon] (0,0,0) circle (1);
+
+% celestial sphere
+\shade[ball color=bluesky, opacity=0.5] (0,0,0) circle (1cm);
+
+\draw[decoration={text along path, text={Horizonte}, text align={center}}, decorate] (0.85,0.1) to [bend right=12] (0.3,0.85);
+
+% axes
+\draw[thick, ->] ( 0, 0, 0) -- ( 0, 0, 1.2) node[above]{Zênite};
+\draw[thick, -]  ( 0, 1, 0) -- ( 0,-1, 0)  node[left]{Norte};
+\draw[        ]  ( 0,-1, 0) -- ( 0, 1, 0)  node[right]{Sul};
+\draw[thick, -]  ( 1, 0, 0) -- (-1, 0, 0)  node[above]{Leste};
+\draw[        ]  (-1, 0, 0) -- ( 1, 0, 0)  node[below]{Oeste};
+
+\end{tikzpicture}
+ 
+\end{document}

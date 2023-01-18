@@ -1,0 +1,62 @@
+\documentclass[border=0mm]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\definecolor{mygrass}{HTML}{3f613a}
+
+\begin{tikzpicture}
+ 
+\def\R{3.0}
+\def\eps{50}
+\tikzmath{
+\xp = \R * cos(\eps);
+\yp = \R * sin(\eps); 
+}
+
+\coordinate (O) at (0,0) {}; %center of the Earth
+\coordinate (E) at (\R,0) {}; %Equator (day side)
+\coordinate (P) at (\xp,\yp) {}; %person
+\coordinate (xP) at (\xp,0) {}; %x pessoa
+\coordinate (Z) at (2*\xp,2*\yp) {}; %Zenith
+\coordinate (NP) at (\xp,2*\yp) {}; %Norte da pessoa
+
+% Earth
+\draw[thick, black] (O) circle (\R);
+
+% Poles
+\draw[thick, black] (0,\R)--++(0,0.2) node[above] {$N$};
+\draw[thick, black] (0,-\R)--++(0,-0.2) node[below] {$S$};
+
+% Equator
+\draw[thick, black] (-\R,0)--(\R,0);
+\draw[draw=none] (-\R,0)--(O) node[midway, above] {Equador da Terra};
+
+% Zenith
+\draw[thick, black, dashed] (P)--(Z) node[abve, yshift=3mm] {$Z$};
+
+\draw[thick, black, dashed] (xP)--(NP) node[abve, yshift=3mm] {$N$};
+
+% Person
+\draw[thick, black] (O)--(P);
+\draw[draw=none, mygrass, fill=mygrass, rotate=\eps] (P) node[rotate=-90+\eps, yshift=3.5mm] {\Strichmaxerl[2.5]};
+\draw[very thick, mygrass, rotate=\eps] (\R+0.03,1)--(\R+0.03,-1) node[anchor=west, rotate=-90+\eps, yshift=1mm] {Horiz.};
+
+% Angle: latitude
+\tkzMarkAngle[mark=none, draw=black, size=0.8](E,O,P);
+\tkzLabelAngle[dist=1](E,O,P){$\varphi$};
+
+% Angle: height of pole
+\coordinate (hor) at (\xp-0.5,\yp+0.45) {};
+\tkzMarkAngle[mark=none, draw=black, size=0.8](NP,P,hor);
+\tkzLabelAngle[dist=1](NP,P,hor){$\varphi$};
+
+% right angle
+\tkzMarkRightAngle[draw=black, size=0.2](O,xP,P);
+
+
+
+\end{tikzpicture}
+ 
+\end{document}

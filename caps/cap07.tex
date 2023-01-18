@@ -1,0 +1,248 @@
+\chapter{Primeiros passos}
+
+Pretendemos escrever programas em Python para automatizar alguns dos cálculos feitos anteriormente. Neste capítulo, o objetivo é essencialmente desenvolver um programa que calcule a solução do Exemplo \ref{ex:9}. Isto é, partindo de ascensão reta e declinação, obter altura e azimute da estrela. Para isso, é necessário saber latitute geográfica e tempo sideral. Por enquanto, vamos supor que tempo sideral seja um dado. Com esse programa, ficará simples de re-executar as operações com dados de entrada diferentes.
+
+\section{Graus e radianos}
+
+Vamos começar com alguns exemplos simples de uso de Python. Um pequeno programa para converter um ângulo de graus para radianos seria assim:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+angulo_em_graus = 90
+angulo_em_radianos = angulo_em_graus * np.pi / 180
+print(angulo_em_radianos)
+\end{lstlisting}
+
+\noindent\texttt{1.5707963267948966}\\
+
+\noindent A biblioteca numpy foi importada no início apenas para podermos usar o valor de $\pi$. É trivial escrever um programa que faça a operação inversa, convertendo radianos para graus.
+
+Em Python, existem muitas funções já prontas para operações que são freqüentemente necessárias. Por exemplo, já existe a função \texttt{np.radians()}, que converte de graus para radianos e pode ser usada assim, por exemplo:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+x = np.radians(90)
+\end{lstlisting}
+
+\noindent Analogamente, a função \texttt{np.degrees()} converte de radianos para graus:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+y = np.degrees(1.57)
+\end{lstlisting}
+
+
+\section{Graus sexagesimais para graus decimais}
+
+É instrutivo escrever dois pequenos programas que convertam graus sexagesimais (isto é, na notação $45^{\circ}\,30'\,36''$) para graus decimais (na notação $45.51^{\circ}$) --- e vice versa. A sugestão é que o leitor escreva esses dois programas por conta própria, antes de consultar a resolução apresentada a seguir.
+
+Partindo desse exemplo, colocamos cada componente em uma variável:
+
+\begin{lstlisting}[language=Python]
+graus = 45
+minutos = 30
+segundos = 36
+\end{lstlisting}
+
+\noindent Primeiro, passamos os segundos para minutos:
+
+\begin{lstlisting}[language=Python]
+segundos/60
+\end{lstlisting}
+\noindent\texttt{0.6}\\
+
+\noindent Agora, passando esses minutos para graus:
+
+\begin{lstlisting}[language=Python]
+(minutos + segundos/60)/60
+\end{lstlisting}
+\noindent\texttt{0.51}\\
+
+\noindent Somando esses graus aos graus inteiros que já estavam lá:
+
+\begin{lstlisting}[language=Python]
+graus + (minutos + segundos/60)/60
+\end{lstlisting}
+\noindent\texttt{45.51}\\
+
+\noindent Passando a limpo, poderíamos escrever uma única linha:
+
+\begin{lstlisting}[language=Python]
+graus_decimais = graus + minutos/60 + segundos/3600
+\end{lstlisting}
+
+Quando um mesmo procedimento vai ser usado diversas vezes dentro de um programa maior, é conveniente definir uma função, ou seja, algo que recebe um ou mais argumentos e retorna algum resultado. Assim fica mais simples de chamar a função toda vez que for necessária, deixando o código mais legível. Nossa função ficaria assim:
+
+\begin{lstlisting}[language=Python]
+def sexagesimal_to_decimal(graus, minutos, segundos):
+    graus_decimais = graus + minutos/60 + segundos/3600
+    return graus_decimais
+\end{lstlisting}
+
+\noindent Ela recebe 3 argumentos, efetua os cálculos e retorna 1 valor. É uma boa prática colocar comentários explicando qual o objetivo da função, o que ela espera receber e o que ela devolve. Por exemplo, algo mais ou menos desse estilo:
+
+\begin{lstlisting}[language=Python]
+def sexagesimal_to_decimal(graus, minutos, segundos):
+    '''
+    Funcao que converte graus sexagesimais para graus decimais
+    Input: graus, minutos e segundos
+    Returns: graus sexagesimais
+    '''
+    graus_decimais = graus + minutos/60 + segundos/3600
+    return graus_decimais
+\end{lstlisting}
+
+\noindent Nesse exemplo específico, pode parecer reduntante colocar comentários, pois a função é muito simples. Mas documentação é sempre valiosa.
+
+\section{Graus decimais para graus sexagesimais}
+
+O próximo exemplo é a operação invesa. Partimos de um ângulo dado em graus decimais. A variável de entrada é apenas uma:
+
+\begin{lstlisting}[language=Python]
+theta = 45.51
+\end{lstlisting}
+
+\noindent O primeiro passo é obter os graus inteiros. Para separar os graus inteiros da parte decimal, vamos tomar o \textit{quociente} da divisão inteira por 1. Em python3, isso se faz com o símbolo \texttt{//}.
+
+\begin{lstlisting}[language=Python]
+graus_inteiros = theta // 1
+print(graus_inteiros, 'deg')
+\end{lstlisting}
+\noindent\texttt{45.0 deg}\\
+
+\noindent Precisamos extrair minutos inteiros daquilo que sobrou depois do ponto decimal. Para separar a parte decimal, vamos tomar o \textit{resto} da divisão inteira. Em python3, isso se faz com
+o símbolo~\texttt{\%}.
+
+\begin{lstlisting}[language=Python]
+graus_decimais = theta % 1
+print(graus_decimais, 'deg')
+\end{lstlisting}
+\noindent\texttt{0.509999999999998 deg}\\
+
+\noindent Para converter esses graus decimais para minutos, basta multiplicar por 60:
+
+\begin{lstlisting}[language=Python]
+minutos = graus_decimais * 60
+print(minutos, 'arcmin')
+\end{lstlisting}
+\noindent\texttt{30.59999999999988 arcmin}\\
+
+\noindent Extraindo os minutos inteiros com o quociente da divisão inteira:
+
+\begin{lstlisting}[language=Python]
+minutos_inteiros = minutos // 1
+print(minutos_inteiros, 'arcmin')
+\end{lstlisting}
+\noindent\texttt{30.0 arcmin}\\
+
+\noindent Agora, precisamos extrair segundos daquilo que sobrou depois do ponto decimal. Extraindo os minutos decimais com o resto da divisão inteira:
+
+\begin{lstlisting}[language=Python]
+minutos_decimais = minutos % 1
+print(minutos_decimais, 'arcmin')
+\end{lstlisting}
+\noindent\texttt{0.5999999999998806 arcmin}\\
+
+\noindent Esses minutos decimais são convertidos para segundos multiplicando por 60:
+
+\begin{lstlisting}[language=Python]
+segundos = minutos_decimais * 60
+print(segundos, 'arcsec')
+\end{lstlisting}
+\noindent\texttt{35.99999999999284 arcsec}\\
+
+Passando a limpo, a função definitiva recebe 1 argumento (graus decimais) e retorna 3 valores (graus, minutos e segundos):
+
+\begin{lstlisting}[language=Python]
+def decimal_to_sexagesimal(theta):
+    graus = theta // 1
+    minutos = ((theta % 1) * 60) // 1
+    segundos = (((theta % 1) * 60) % 1) * 60
+    return graus, minutos, segundos
+\end{lstlisting}
+
+\noindent Se o ângulo de entrada puder ser negativo, essa função teria problemas. (Por exemplo, teste o comportamento de \texttt{-45.9 // 1}). Uma maneira simples de contornar esse problema seria fazer
+todos os cálculos usando o módulo do ângulo. E depois colocar o sinal de volta na resposta:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+def decimal_to_sexagesimal(theta):
+    '''
+    Funcao que converte graus decimais para graus sexagesimais
+    Input: graus, minutos, segundos
+    Returns: graus decimais
+    '''
+    S = np.sign(theta)
+    theta = abs(theta)
+    graus = theta // 1
+    minutos = ((theta % 1) * 60) // 1
+    segundos = (((theta % 1) * 60) % 1) * 60
+    return S*graus, S*minutos, S*segundos
+\end{lstlisting}
+
+\noindent Testando o uso da função com um input qualquer:
+
+\begin{lstlisting}[language=Python]
+graus, minutos, segundos = decimal_to_sexagesimal(-10.0997)
+print(graus, 'deg', minutos, 'arcmin', segundos, 'arcsec')
+\end{lstlisting}
+\noindent\texttt{-10.0 deg -5.0 arcmin -58.92000000000124 arcsec}\\
+
+Haveria outras maneiras de lidar com inteiros e restos, por exemplo empregando a função \texttt{int()}.
+
+\newpage
+\section{Transformação de coordenadas}
+\label{sec:trans}
+
+O objetivo agora é escrever uma função que receba as coordenadas equatoriais ($\alpha, \delta$) e retorne como resposta as coordenadas horizontais ($h, A$). É preciso conhecer a latitude e o tempo sideral. Os dados de entrada seriam da seguinte forma (usando os mesmos valores do exemplo \ref{ex:9}):
+
+\begin{lstlisting}[language=Python]
+ra  =   4.0 # h 
+dec =  20.0 # deg
+TS  =   7.0 # h
+phi = -30.0 # deg
+\end{lstlisting}
+
+\noindent Trata-se essencialmente de implementar as equações \ref{conv1} a \ref{conv3}. Essa tarefa é intencionalmente deixada como exercício. Usando como ponto de partida o esqueleto da função abaixo, complete o resto do código e teste para o exemplo já solucionado anteriormente.
+
+\begin{lstlisting}[language=Python]
+def radec_to_Ah(ra, dec, TS, phi):
+    '''
+    Funcao que converte coordenadas equatoriais para horizontais
+    input
+    ra : ascensao reta (horas decimais) [0,24]
+    dec : declinacao (graus decimais) [-90,90]
+    TS : tempo sideral (horas decimais) [0,24]
+    phi : latitude geografica (graus decimais) [-90,90]
+    output
+    A : azimute (graus decimais) [0,360]
+    h : altura (graus decimais) [-90,90]
+    '''
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # complete o resto do codigo aqui...
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return A, h
+\end{lstlisting}
+

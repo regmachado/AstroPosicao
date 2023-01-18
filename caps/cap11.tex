@@ -1,0 +1,41 @@
+\chapter{A que horas acontece o meio-dia?}
+
+Neste capítulo, vamos entender por quais motivos o meio-dia verdadeiro (isto é, o instante de mínima sombra do dia) não coincide em geral com as 12\,h\,00\,min da hora civil. Veremos como calcular a correção. Ao fim, é possível confirmar na prática esse horário.
+
+Um dos motivos para a diferença tem a ver com a longitude. Pense na rotação da Terra, que se dá de Oeste para Leste. A cada momento, o Sol estará sobre um determinado meridiano. Considere, por exemplo, algumas cidades e suas longitudes: São Paulo (longitude 46.6$^{\circ}$ Oeste), Curitiba ($49.3^{\circ}$ Oeste) e Foz do Iguaçu ($54.6^{\circ}$ Oeste). Digamos que agora o Sol esteja passando pelo meridiano de São Paulo; é meio-dia verdadeiro lá. Daqui alguns minutos, o Sol passará pelo meridiano de Curitiba. Daqui mais alguns minutos, será a vez de Foz do Iguaçu. No entanto, todos dentro desse fuso adotam a mesma hora civil. Não tem como o meio-dia do relógio corresponder ao meio-dia verdadeiro para todas as cidades ao mesmo tempo. As cidades que, em princípio, teriam a oportunidade de evitar essa confusão são aquelas no centro do fuso, onde a longitude realmente é $-3\,{\rm h} = -45^{\circ}$ (mas mesmo isso ainda não é a explicação completa). O centro do fuso não passa em Brasília (o Distrito Federal não foi feito para isso). O meridiano $-15^{\circ}$ acontece de passar em algum local intermediário entre Rio de Janeiro e São Paulo. Confira em um mapa. Uma das cidades que mais se aproximam de estar no centro do fuso é Ubatuba, no litoral de SP, por onde coincidentemente também passa o trópico de Capricórnio.
+
+A conclusão com relação à longitude é a seguinte. Como nosso fuso é centrado em $45^{\circ}$ Oeste, as cidades que tiverem longitude um pouco mais a Oeste (por exemplo, $46^{\circ}$), veriam o Sol passar pelo meridiano alguns minutos depois de 12\,h. Já as cidade um pouco mais a Leste (por exemplo, $44^{\circ}$), veriam o Sol passar pelo meridiano alguns minutos antes de 12\,h. Mas ainda não acabou. Existe outro efeito, discutido a seguir, que traz uma segunda contribuição no cálculo.
+
+O que descrevemos até agora (o Sol estar no meridiano etc) corresponde ao conceito de tempo solar. Cada longitude teria seu tempo solar local. No entanto, tudo isso trata do tempo solar \textit{verdadeiro}. Apesar de intuitivo, o tempo solar verdadeiro é inconveniente para marcação quantitativa do tempo, pois há irregularidades (físicas) no movimento aparente do Sol. Introduz-se então a noção de tempo solar \textit{médio}. Os motivos físicos dessas irregularidades são principalmente: a inclinação do eixo e a excentricidade da órbita da Terra (além de outros pequenos efeitos devidos a perturbações gravitacionais da Lua etc). Isso faz com que o Sol aparente estar mais veloz ou mais lento em diferentes épocas do ano. A correção é conhecida pelo nome de \textbf{equação do tempo}. Esse desvio varia desde $-14$\,min até $+16$\,min ao longo do ano (na verdade, varia lentamente ao longo dos séculos também). Não vamos detalhar o cálculo da equação do tempo em maior profundidade, mas seu resultado numérico pode ser consultado em um gráfico --- por exemplo, na figura 2.5 da apostila do Gastão. Aliás, essa correção é necessária para fazer a leitura de relógios de Sol em geral.
+
+
+
+\begin{exemplo}{11}
+\textit{Em Curitiba, no dia 25 de maio, o meio-dia verdadeiro acontecerá em que horário?}\\
+
+Resposta: Há duas contribuições na correção: uma devida à longitude e outra devida à equação do tempo.\\
+
+(i) Longitude: Considere a longitude de Curitiba, que é aproximadamente $49.3^{\circ}$ Oeste. Estamos cerca de 4.3$^{\circ}$ mais a Oeste do que o centro do nosso fuso. Então quando for meio-dia no horário civil de Brasília, o Sol ainda não terá chegado no meridiano de Curitiba. Como $15^{\circ}$ equivalem a 1\,h, esses 4.3$^{\circ}$ correspondem a cerca de 0.29\,h, ou 17 minutos. Então o Sol só chegaria no meridiano de Curitiba 17 minutos depois do meio-dia civil, às 12\,h\,17\,min. Essa correção é uma contribuição permanente para os horários na longitude de Curitiba; vale o ano todo.\\
+
+(ii) Equação do tempo: Neste exemplo, estamos interessados no dia 25 de maio, que é o 145$^{\underline{\circ}}$ dia do ano. Consultando no gráfico da apostila do Gastão, descobrimos que nesse dia a equação do tempo vale aproximadamente $+3$ minutos. Pela convenção, o sinal positivo significa que o Sol médio está \textit{atrasado} com relação ao Sol verdadeiro. Então é preciso \textit{subtrair} 3 minutos do tempo civil para encontrar o meio-dia verdadeiro. Partindo dos 12\,h\,17\,min obtidos por causa da longitude, a nossa previsão é de que o meio-dia verdadeiro (em Curitiba, em 25 de maio) ocorra às 12\,h\,14\,min do tempo civil. Confira no Stellarium.
+
+\end{exemplo}
+
+Recapitulando: No caso geral, a passagem meridiana do Sol (meio-dia verdadeiro) ocorrerá quando o relógio indicar alguns minutos antes ou depois das 12\,h\,00\,min. Os motivos para esses minutos são essencialmente: (i) a cidade não está no centro do seu fuso horário; (ii) eixo de rotação da Terra é inclinado e (iii) a órbita da Terra não é circular. O primeiro efeito causa uma defasagem fixa para aquele lugar. Os dois outros efeitos geram um atraso ou avanço, que varia ao longo do ano. 
+
+\begin{exemplo}{12}
+\textit{Em Curitiba, no dia 21 de março, o meio-dia verdadeiro acontecerá em que horário?}\\
+
+Obtenha esse horário de 3 maneiras:\\
+
+(a) Fazendo o cálculo como no exemplo anterior. Use a mesma defasagem da longitude e tome cuidado com o sinal da equação do tempo.\\
+
+(b) Confira a resposta no Stellarium.\\
+
+(c) Meça diretamente as sombras no dia 21 de março! \\
+ 
+\end{exemplo}
+
+% Estamos interessados no dia 21 de março, que é o 80$^{\underline{\circ}}$ dia do ano. Consultando no gráfico, descobrimos que nesse dia a equação do tempo vale aproximadamente $-7$ minutos. Pela convenção, o sinal negativo significa que o Sol médio está adiantado com relação ao Sol verdadeiro. Então é preciso adicionar 7 minutos do tempo civil para encontrar o meio-dia verdadeiro. Partindo dos 12\,h\,17\,min obtidos por causa da longitude, a nossa previsão é de que o meio-dia verdadeiro (em Curitiba, em 21 de março) ocorra às 12\,h\,24\,min do tempo civil. Confira no Stellarium.  
+
+Para concluir, uma curiosidade. No dia 3 de novembro, o gráfico da equação do tempo dá um valor de mais de $+16$ minutos, o que quase cancela a defasagem da longitude de Curitiba; nesse dia, o meio-dia verdadeiro acontece bem próximo de 12\,h\,00\,min.

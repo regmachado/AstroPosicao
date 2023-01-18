@@ -1,0 +1,20 @@
+\documentclass[tikz, border=0]{standalone}
+
+\usepackage{preambletikz}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{290} % point of view
+\begin{tikzpicture}[scale=1, tdplot_main_coords]
+\def\LX{2.5}
+\def\LY{2.5}
+\path [use as bounding box] (-0.7*\LX cm, -0.4*\LY cm) rectangle (0.5*\LX cm, 0.5*\LY cm);
+
+
+\draw[black, thick, ->] (0,0,0) -- (1,0,0) node[anchor=west]{$y$};
+\draw[black, thick, ->] (0,0,0) -- (0,1,0) node[anchor=east]{$x$};
+\draw[black, thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+\end{tikzpicture}
+
+\end{document}

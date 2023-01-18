@@ -1,0 +1,48 @@
+\documentclass[border=1mm]{standalone}
+
+\usepackage{preambletikz}
+ 
+\begin{document}
+
+\begin{tikzpicture}[scale=3]
+
+\coordinate (O) at (0,0) {}; 
+\coordinate (ex) at (1,0) {};
+\coordinate (ey) at (0,1) {};
+\def\xp{0.5}
+\def\yp{0.6}
+\coordinate (P) at (\xp,\yp) {};
+
+
+\draw[->, thick, black, rotate=0] (O)--(ex) node[anchor=west, rotate=0] {$x$};
+\draw[->, thick, black, rotate=0] (O)--(ey) node[anchor=south, rotate=0] {$y$};
+\draw[dashed, thin, black, rotate=0] (\xp,0)--(P);
+\draw[dashed, thin, black, rotate=0] (0,\yp)--(P);
+
+\def\th{30}
+
+\tikzmath{
+\xr = \xp * cos(\th) + \yp * sin(\th);
+\yr = -\xp * sin(\th) + \yp * cos(\th);
+\exr = cos(\th);
+\eyr = sin(\th);
+}
+
+\draw[->, thick, orange, rotate=\th] (O)--(1,0) node[anchor=west, rotate=\th] {$x'$};
+\draw[->, thick, orange, rotate=\th] (O)--(0,1) node[anchor=south, rotate=\th] {$y'$};
+\draw[dashed, thin, orange, rotate=\th] (\xr,0)--(P);
+\draw[dashed, thin, orange, rotate=\th] (0,\yr)--(P);
+
+
+\draw[black, fill=black] (P) circle (0.15mm) node[above] {$P$};
+
+% Angle
+\coordinate (E) at (1,0) {};
+\coordinate (R) at (\exr,\eyr) {};
+\tkzMarkAngle[->, mark=none, draw=orange, size=0.25](E,O,R);
+\tkzLabelAngle[orange, dist=0.3](E,O,R){$\theta$};
+
+
+\end{tikzpicture}
+ 
+\end{document}
