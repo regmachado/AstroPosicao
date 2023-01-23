@@ -1,6 +1,6 @@
 \chapter{Primeiros passos}
 
-Pretendemos escrever programas em Python para automatizar alguns dos cálculos feitos anteriormente. Neste capítulo, o objetivo é essencialmente desenvolver um programa que calcule a solução do Exemplo \ref{ex:9}. Isto é, partindo de ascensão reta e declinação, obter altura e azimute da estrela. Para isso, é necessário saber latitute geográfica e tempo sideral. Por enquanto, vamos supor que tempo sideral seja um dado. Com esse programa, ficará simples de re-executar as operações com dados de entrada diferentes.
+Pretendemos escrever programas em Python para automatizar alguns dos cálculos feitos anteriormente. Neste capítulo, o objetivo é essencialmente desenvolver um programa que calcule a solução do Exemplo \ref{ex:9}. Isto é, partindo de ascensão reta e declinação, obter altura e azimute da estrela. Para isso, é necessário saber a latitude geográfica e tempo sideral. Por enquanto, vamos supor que tempo sideral seja um dado. Com esse programa, ficará simples de re-executar as operações com dados de entrada diferentes.
 
 \section{Graus e radianos}
 
@@ -95,11 +95,11 @@ def sexagesimal_to_decimal(graus, minutos, segundos):
     return graus_decimais
 \end{lstlisting}
 
-\noindent Nesse exemplo específico, pode parecer reduntante colocar comentários, pois a função é muito simples. Mas documentação é sempre valiosa.
+\noindent Nesse exemplo específico, pode parecer redundante colocar comentários, pois a função é muito simples. Mas documentação é sempre valiosa.
 
 \section{Graus decimais para graus sexagesimais}
 
-O próximo exemplo é a operação invesa. Partimos de um ângulo dado em graus decimais. A variável de entrada é apenas uma:
+O próximo exemplo é a operação inversa. Partimos de um ângulo dado em graus decimais. A variável de entrada é apenas uma:
 
 \begin{lstlisting}[language=Python]
 theta = 45.51
@@ -245,4 +245,5 @@ def radec_to_Ah(ra, dec, TS, phi):
     
     return A, h
 \end{lstlisting}
+
 

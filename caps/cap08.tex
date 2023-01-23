@@ -32,7 +32,7 @@ datetime.datetime(year, month, day, hour, minute, second)
 
 \noindent e em seguida calcular diferenças, somar intervalos de tempo etc.
 
-O programa a seguir exemplifica o uso de algumas funções do datetime. Especificamente, é calculado nesse exemplo o número de dias decorridos desde 21/03/2023 ao meio-dia de Greewich até o dia 10/08/2023 às 20\,h\,30\,min no fuso de Brasília.
+O programa a seguir exemplifica o uso de algumas funções do datetime. Especificamente, é calculado nesse exemplo o número de dias decorridos desde 21/03/2023 ao meio-dia de Greenwich até o dia 10/08/2023 às 20\,h\,30\,min no fuso de Brasília.
 
 \begin{lstlisting}[language=Python]
 import datetime
@@ -74,7 +74,7 @@ Repare que a biblioteca datetime está meramente sendo usada para contar o núme
 \section{Data Juliana}
 \label{sec:ts3}
 
-Aqui é introduzido um novo modo de calcular o tempo sideral, mais acurado do que as nossas estimativas que foram calculadas de maneira aproximada. Trata-se de uma fórmula proposta pela IAU (União Astronômica Internacional), que serve para calcular o tempo sideral em Greenwhich em qualquer instante. Mas essa fórmula envolve a chamada data juliana. 
+Aqui é introduzido um novo modo de calcular o tempo sideral, mais acurado do que as nossas estimativas que foram calculadas de maneira aproximada. Trata-se de uma fórmula proposta pela IAU (União Astronômica Internacional), que serve para calcular o tempo sideral em Greenwich em qualquer instante. Mas essa fórmula envolve a chamada data juliana. 
 
 A \textbf{data juliana} é uma contagem de dias cujo zero foi definido como sendo o meio-dia do dia 1 de janeiro de 4713 a.C. 
 
@@ -111,13 +111,13 @@ T = \frac{JD - 2451545}{36525}
 %
 Com o dia juliano do exemplo, o século juliano vale aproximadamente $T = 0.2360438056$. Se desejarmos ter precisão de minutos no fim da conta, então o número de séculos precisará de da ordem de 8 casas decimais.
 
-Finalmente, podemos usar o valor do século juliano $T$ na fórmula da IAU\footnote{\url{https://ui.adsabs.harvard.edu/abs/1982A\%26A...105..359A}}. Esta equação fornece o tempo sideral em Greenwhich, em segundos:
+Finalmente, podemos usar o valor do século juliano $T$ na fórmula da IAU\footnote{\url{https://ui.adsabs.harvard.edu/abs/1982A\%26A...105..359A}}. Esta equação fornece o tempo sideral em Greenwich, em segundos:
 %
 \begin{equation}
 TS = 24110.54841 + 8640184.812866~T + 0.093104~T^2 - 0.0000062~T^3
 \end{equation}
 %
-Dividindo o resultado por 3600, teremos o $TS$ em horas, ainda à 0\,h de UT. Para outros horários, somar as horas. Por exemplo, se são 23\,h\,30\,min em UT, somar 23.5\,h. Para um valor mais acurado, devemos multiplicar as horas pelo fator 1.0027, que é a razão entre dia solar e dia sideral (no exemplo, $1.0027 \times 23.5\,{\rm h} = 23.5634$\,h) Assim, teremos o $TS$ em Greenwhich. Quando o valor dá maior que 24\,h, tomamos o resto da divisão inteira por 24. Por exemplo, se o resultado desse 26\,h, o tempo sideral seria 2\,h; se desse 49\,h, o tempo sideral seria 1\,h. No nosso exemplo, o tempo sideral em Greenwhich resulta ser 20.7790\,h.
+Dividindo o resultado por 3600, teremos o $TS$ em horas, ainda à 0\,h de UT. Para outros horários, somar as horas. Por exemplo, se são 23\,h\,30\,min em UT, somar 23.5\,h. Para um valor mais acurado, devemos multiplicar as horas pelo fator 1.0027, que é a razão entre dia solar e dia sideral (no exemplo, $1.0027 \times 23.5\,{\rm h} = 23.5634$\,h) Assim, teremos o $TS$ em Greenwich. Quando o valor dá maior que 24\,h, tomamos o resto da divisão inteira por 24. Por exemplo, se o resultado desse 26\,h, o tempo sideral seria 2\,h; se desse 49\,h, o tempo sideral seria 1\,h. No nosso exemplo, o tempo sideral em Greenwich resulta ser 20.7790\,h.
 
 Finalmente, para passar para o $TS$ local, basta somar a longitude. Com a longitude de Curitiba ($-49.27^{\circ} = -3.285$\,h), o tempo sideral local do exemplo termina sendo 17.4943\,h, ou 17\,h\,29\,min\,39\,s. Constatamos que nossa estimativa no exemplo \ref{ex:10ago} tinha dado um valor próximo, com erro de apenas $\sim$4 minutos.
 
@@ -171,7 +171,7 @@ print('TS = ', ts)
 
 Por fim, a culminação dos nossos esforços será reunir as ferramentas desenvolvidas anteriormente em um único programa. Na Seção \ref{sec:trans} havíamos implementado uma função que converte coordenadas, mas supondo o tempo sideral já dado. Agora o objetivo é escolher um dos métodos apresentados nas Seções \ref{sec:ts1} a \ref{sec:ts4} para calcular o $TS$ diretamente a partir de qualquer data e horário. Assim, dentro do mesmo programa, o $TS$ será calculado e em seguida será fornecido como argumento para a função que converte coordenadas. Teremos o procedimento completo, do começo ao fim.
 
-Agora você pode ecolher alguma estrela qualquer de sua preferência e calcular suas coordenadas para a noite da observação.
+Agora você pode escolher alguma estrela qualquer de sua preferência e calcular suas coordenadas para a noite da observação.
 
 \section{Um catálogo de estrelas}
 
@@ -209,3 +209,5 @@ Em última análise, é isso o que o Stellarium está fazendo por dentro. E tamb
 \begin{center}
  $\star$
 \end{center}
+
+
